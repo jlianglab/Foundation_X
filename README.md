@@ -11,3 +11,9 @@ Developing deep-learning models for medical imaging requires large, annotated da
 <sup>1</sup>Arizona State University, <sup>2</sup>Mayo Clinic<br/>
 [Winter Conference on Applications of Computer Vision (WACV-2025)](https://wacv2025.thecvf.com/)<br/>
 [Paper](https://openaccess.thecvf.com/content/WACV2025/papers/Islam_Foundation_X_Integrating_Classification_Localization_and_Segmentation_through_Lock-Release_Pretraining_WACV_2025_paper.pdf) | [Poster](https://github.com/jlianglab/Foundation_X/blob/main/Figures/FoundationX_POSTER.pdf) | [Code](https://github.com/jlianglab/Foundation_X)
+
+## Datasets
+1. [CheXpert]()
+2. [NIH ChestX-ray14]()
+3. [VinDr-CXR]()
+4. [NIH Schenzhen CXR]()
