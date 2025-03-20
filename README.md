@@ -29,4 +29,9 @@ Developing deep-learning models for medical imaging requires large, annotated da
 14. [NIH Montgomery](https://www.nih.gov/about-nih/nih-montgomery-county-leased-facilities)
 15. [JSRT](http://db.jsrt.or.jp/eng.php)
 
-
+## Major results from our work
+**1. Foundation X maximizes performance improvements by utilizing all available annotations for classification, localization, and segmentation.
+**
+<p align="left">
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_PretrainingResults.png" width=70% height=70%>
+</p>
