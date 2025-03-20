@@ -69,6 +69,9 @@ Data splits and generated COCO-format annotation files can be downloaded through
 ## Pre-trained models
 You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
 
+## Setting-up the multiscaledeformableattention peckage
+Please follow the steps described in [DINO GitHub Repo](https://github.com/IDEA-Research/DINO) to install the package "multiscaledeformableattention".
+
 <br/>
 
 ## Citation
