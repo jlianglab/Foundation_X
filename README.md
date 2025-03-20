@@ -37,10 +37,10 @@ Developing deep-learning models for medical imaging requires large, annotated da
 
 **2. Foundation X enhances performance when jointly trained for organ localization and segmentation and excels during finetuning.**
 <p align="left">
-<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_LocSeg_VinDrCXR.png" width=70% height=70%>
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_LocSeg_VinDrCXR.png" width=50% height=50%>
 </p>
 <p align="left">
-<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_Seg_OtherDatasets.png" width=70% height=70%>
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_Seg_OtherDatasets.png" width=50% height=50%>
 </p>
 
 **3. Foundation X excels in few-shot learning and shows strong performance across training samples.**
