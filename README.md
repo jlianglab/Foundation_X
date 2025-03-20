@@ -34,7 +34,7 @@ Developing deep-learning models for medical imaging requires large, annotated da
     <br/><em>We pretrain our Foundation X model using 11 publicly available chest X-ray datasets, as shown in the first 11 datasets in the table. Although not every dataset contains all three types of annotations—classification, localization, and segmentation—we leverage all available annotations to maximize the model’s learning potential. Among these datasets, all include classification ground truths, six provide localization bounding box annotations, and three offer segmentation masks for diseases. Furthermore, we utilize organ localization and segmentation datasets from VinDr-CXR, VinDr-RibCXR, NIH Montgomery, and JSRT for target task fine-tuning. Here, the organ segmentation masks for VinDr-CXR were sourced from the CheXmask database. We also fine-tuned VinDr-CXR with local labels for the disease localization task.</em>
 </p>
 
-## Accessing Data Splits and COCO-Format Bounding Box Annotations
+## Data Splits, Bounding Box Annotations & Pretraining Instructions
 - Data splits and generated COCO-format annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
 - Make sure to update the data direcotry in the files `datasets/coco.py` (for localization tasks) and `datasets_medical.py` (for classification and segmentation tasks). <br/>
 - Follow the script `scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh` to start pretraining **Foundation X model**. <br/>
