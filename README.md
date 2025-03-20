@@ -57,3 +57,28 @@ Developing deep-learning models for medical imaging requires large, annotated da
 <p align="left">
 <img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_Discussion_Localization_VinDrCXR.png" width=70% height=70%>
 </p>
+
+## Data organization and preprocessing steps
+Data split and generated coco format annotation files can be found in the following:
+[Classification/Segmentation Data split](https://www.dropbox.com/scl/fo/j26ybbjq27sfuc075lo2a/AFyr1fdpC0L7ZCPSeX-ZfeE?rlkey=wkbx6r8c7wjhdwp6uxog0k91s&st=5n17jsan&dl=0)
+[Coco Format Localization Annotation Files](https://www.dropbox.com/scl/fo/gqsj733jn9iaw52zebm2r/AC25bQU0pQDhX4FDOEDuolY?rlkey=wgynvi1qyt5yfswwif2md8rdq&st=tnm19p4c&dl=0)
+
+## Pre-trained models
+You can download the pretrained models used/developed in our paper from [here](https://www.dropbox.com/scl/fo/nin8bu3cygdmdrmafuidl/AA_xaDmfd2o9aMTT_ZXGklM?rlkey=hdxjv89qk0u47dhh3sxsna8iy&st=hg78rq19&dl=0).
+
+## Citation
+If you use this code or use our pre-trained models for your research, please cite our paper:
+
+```
+@InProceedings{Islam_2025_WACV,
+    author    = {Islam, Nahid Ul and Ma, DongAo and Pang, Jiaxuan and Velan, Shivasakthi Senthil and Gotway, Michael and Liang, Jianming},
+    title     = {Foundation X: Integrating Classification Localization and Segmentation through Lock-Release Pretraining Strategy for Chest X-ray Analysis},
+    booktitle = {Proceedings of the Winter Conference on Applications of Computer Vision (WACV)},
+    month     = {February},
+    year      = {2025},
+    pages     = {3647-3656}
+}
+```
+
+## Acnkowledgement
+This research was partially supported by ASU and Mayo Clinic through a Seed Grant and an Innovation Grant, as well as by the NIH under Award Number R01HL128785. The authors are solely responsible for the content, which does not necessarily reflect the official views of the NIH. This work also utilized GPUs provided by ASU Research Computing (SOL), Bridges-2 at the Pittsburgh Supercomputing Center (allocated under BCS190015), and Anvil at Purdue University (allocated under MED220025). These resources are supported by the Advanced Cyberinfrastructure Coordination Ecosystem: Services & Support (ACCESS) program, funded by the National Science Foundation under grants #2138259, #2138286, #2138307, #2137603, and #2138296. We also extend our gratitude to Anirudh Kaniyar Narayana Iyengar for his contributions to collecting localization data, preparing bounding boxes in COCO format, and developing some of the data loaders. Finally, the content of this paper is covered by patents pending.
