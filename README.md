@@ -36,7 +36,8 @@ Developing deep-learning models for medical imaging requires large, annotated da
 
 ## Accessing Data Splits and COCO-Format Bounding Box Annotations
 - Data splits and generated COCO-format annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
-- Make sure to update the data direcotry in the files datasets/coco.py (for localization tasks) and datasets_medical.py (for classification and segmentation tasks). <br/>
+- Make sure to update the data direcotry in the files `datasets/coco.py` (for localization tasks) and `datasets_medical.py` (for classification and segmentation tasks). <br/>
+- Follow the script `scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh` to start pretraining **Foundation X model**. <br/>
 
 ## Major results from our work
 **1. Foundation X maximizes performance improvements during pretraining by utilizing all available annotations for classification, localization, and segmentation.**
