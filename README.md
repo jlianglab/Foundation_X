@@ -93,7 +93,7 @@ If you use this code or use our pre-trained models for your research, please cit
 ```
 
 ## Contact
-For any questions, feel free to rouch out:
+For any questions, feel free to rouch out: <br/>
 Email: nuislam (at) asu.edu
 
 ## Acnkowledgement
