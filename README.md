@@ -30,8 +30,30 @@ Developing deep-learning models for medical imaging requires large, annotated da
 15. [JSRT](http://db.jsrt.or.jp/eng.php)
 
 ## Major results from our work
-**1. Foundation X maximizes performance improvements by utilizing all available annotations for classification, localization, and segmentation.
-**
+**1. Foundation X maximizes performance improvements by utilizing all available annotations for classification, localization, and segmentation.**
 <p align="left">
 <img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_PretrainingResults.png" width=70% height=70%>
+</p>
+
+**2. Foundation X enhances performance when jointly trained for organ localization and segmentation and excels during finetuning.**
+<p align="left">
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_LocSeg_VinDrCXR.png" width=70% height=70%>
+</p>
+<p align="left">
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_Seg_OtherDatasets.png" width=70% height=70%>
+</p>
+
+**3. Foundation X excels in few-shot learning and shows strong performance across training samples.**
+<p align="left">
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_FewShot.png" width=70% height=70%>
+</p>
+
+**4. Foundation X maximizes performance with cross-dataset and cross-task learning.**
+<p align="left">
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_CrossTask_CrossDataset.png" width=70% height=70%>
+</p>
+
+**5. Foundation X full finetuning outperforms head-only finetuning and baseline models.**
+<p align="left">
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_Discussion_Localization_VinDrCXR.png" width=70% height=70%>
 </p>
