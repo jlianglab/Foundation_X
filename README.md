@@ -44,7 +44,7 @@ Data splits and generated COCO-format annotation files can be found at the follo
 ## Major results from our work
 **1. Foundation X maximizes performance improvements by utilizing all available annotations for classification, localization, and segmentation.**
 <p align="left">
-<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_PretrainingResults.png" width=70% height=70%>
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_PretrainingResults.png" width=75% height=75%>
 </p>
 
 **2. Foundation X enhances performance when jointly trained for organ localization and segmentation and excels during finetuning.**
