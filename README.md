@@ -35,9 +35,7 @@ Developing deep-learning models for medical imaging requires large, annotated da
 </p>
 
 ## Accessing Data Splits and COCO-Format Bounding Box Annotations
-Data splits and generated COCO-format annotation files can be found at the following locations:<br/>
-[Classification/Segmentation Data split](https://www.dropbox.com/scl/fo/j26ybbjq27sfuc075lo2a/AFyr1fdpC0L7ZCPSeX-ZfeE?rlkey=wkbx6r8c7wjhdwp6uxog0k91s&st=5n17jsan&dl=0)<br/>
-[Coco Format Localization Annotation Files](https://www.dropbox.com/scl/fo/gqsj733jn9iaw52zebm2r/AC25bQU0pQDhX4FDOEDuolY?rlkey=wgynvi1qyt5yfswwif2md8rdq&st=tnm19p4c&dl=0)<br/>
+Data splits and generated COCO-format annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78) <br/>
 
 <br/>
 
