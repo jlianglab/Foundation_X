@@ -35,7 +35,7 @@ Developing deep-learning models for medical imaging requires large, annotated da
 </p>
 
 ## Accessing Data Splits and COCO-Format Bounding Box Annotations
-Data splits and generated COCO-format annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78) <br/>
+Data splits and generated COCO-format annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
 
 <br/>
 
