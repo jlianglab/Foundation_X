@@ -37,8 +37,6 @@ Developing deep-learning models for medical imaging requires large, annotated da
 ## Accessing Data Splits and COCO-Format Bounding Box Annotations
 Data splits and generated COCO-format annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
 
-<br/>
-
 ## Major results from our work
 **1. Foundation X maximizes performance improvements during pretraining by utilizing all available annotations for classification, localization, and segmentation.**
 <p align="left">
@@ -68,10 +66,10 @@ Data splits and generated COCO-format annotation files can be downloaded through
 <img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_Discussion_Localization_VinDrCXR.png" width=70% height=70%>
 </p>
 
-
 ## Pre-trained models
 You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
 
+<br/>
 
 ## Citation
 If you use this code or use our pre-trained models for your research, please cite our paper:
@@ -86,7 +84,6 @@ If you use this code or use our pre-trained models for your research, please cit
     pages     = {3647-3656}
 }
 ```
-
 
 ## Acnkowledgement
 This research was partially supported by ASU and Mayo Clinic through a Seed Grant and an Innovation Grant, as well as by the NIH under Award Number R01HL128785. The authors are solely responsible for the content, which does not necessarily reflect the official views of the NIH. This work also utilized GPUs provided by ASU Research Computing (SOL), Bridges-2 at the Pittsburgh Supercomputing Center (allocated under BCS190015), and Anvil at Purdue University (allocated under MED220025). These resources are supported by the Advanced Cyberinfrastructure Coordination Ecosystem: Services & Support (ACCESS) program, funded by the National Science Foundation under grants #2138259, #2138286, #2138307, #2137603, and #2138296. We also extend our gratitude to Anirudh Kaniyar Narayana Iyengar for his contributions to collecting localization data, preparing bounding boxes in COCO format, and developing some of the data loaders. Finally, the content of this paper is covered by patents pending.
