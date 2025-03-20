@@ -34,6 +34,13 @@ Developing deep-learning models for medical imaging requires large, annotated da
     <br/><em>We pretrain our Foundation X model using 11 publicly available chest X-ray datasets, as shown in the first 11 datasets in the table. Although not every dataset contains all three types of annotations—classification, localization, and segmentation—we leverage all available annotations to maximize the model’s learning potential. Among these datasets, all include classification ground truths, six provide localization bounding box annotations, and three offer segmentation masks for diseases. Furthermore, we utilize organ localization and segmentation datasets from VinDr-CXR, VinDr-RibCXR, NIH Montgomery, and JSRT for target task fine-tuning. Here, the organ segmentation masks for VinDr-CXR were sourced from the CheXmask database. We also fine-tuned VinDr-CXR with local labels for the disease localization task.</em>
 </p>
 
+## Accessing Data Splits and COCO-Format Annotations
+Data splits and generated COCO-format annotation files can be found at the following locations:<br/>
+[Classification/Segmentation Data split](https://www.dropbox.com/scl/fo/j26ybbjq27sfuc075lo2a/AFyr1fdpC0L7ZCPSeX-ZfeE?rlkey=wkbx6r8c7wjhdwp6uxog0k91s&st=5n17jsan&dl=0)<br/>
+[Coco Format Localization Annotation Files](https://www.dropbox.com/scl/fo/gqsj733jn9iaw52zebm2r/AC25bQU0pQDhX4FDOEDuolY?rlkey=wgynvi1qyt5yfswwif2md8rdq&st=tnm19p4c&dl=0)<br/>
+
+<br/>
+
 ## Major results from our work
 **1. Foundation X maximizes performance improvements by utilizing all available annotations for classification, localization, and segmentation.**
 <p align="left">
@@ -63,10 +70,6 @@ Developing deep-learning models for medical imaging requires large, annotated da
 <img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_Discussion_Localization_VinDrCXR.png" width=70% height=70%>
 </p>
 
-## Data organization and preprocessing steps
-Data splits and generated COCO-format annotation files can be found at the following locations:<br/>
-[Classification/Segmentation Data split](https://www.dropbox.com/scl/fo/j26ybbjq27sfuc075lo2a/AFyr1fdpC0L7ZCPSeX-ZfeE?rlkey=wkbx6r8c7wjhdwp6uxog0k91s&st=5n17jsan&dl=0)<br/>
-[Coco Format Localization Annotation Files](https://www.dropbox.com/scl/fo/gqsj733jn9iaw52zebm2r/AC25bQU0pQDhX4FDOEDuolY?rlkey=wgynvi1qyt5yfswwif2md8rdq&st=tnm19p4c&dl=0)<br/>
 
 ## Pre-trained models
 You can download the pretrained models from [here](https://www.dropbox.com/scl/fo/nin8bu3cygdmdrmafuidl/AA_xaDmfd2o9aMTT_ZXGklM?rlkey=hdxjv89qk0u47dhh3sxsna8iy&st=hg78rq19&dl=0).
