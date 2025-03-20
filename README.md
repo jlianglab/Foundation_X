@@ -72,7 +72,7 @@ Data splits and generated COCO-format annotation files can be found at the follo
 
 
 ## Pre-trained models
-You can download the pretrained models from [here](https://www.dropbox.com/scl/fo/nin8bu3cygdmdrmafuidl/AA_xaDmfd2o9aMTT_ZXGklM?rlkey=hdxjv89qk0u47dhh3sxsna8iy&st=hg78rq19&dl=0).
+You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
 
 
 ## Citation
