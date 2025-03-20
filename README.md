@@ -29,8 +29,8 @@ Developing deep-learning models for medical imaging requires large, annotated da
 14. [NIH Montgomery](https://www.nih.gov/about-nih/nih-montgomery-county-leased-facilities)
 15. [JSRT](http://db.jsrt.or.jp/eng.php)
 <br/>
-<p>
-    <img src="[path_to_image](https://github.com/jlianglab/Foundation_X/blob/main/Figures/Foundation X - Dataset_Collection.png)" alt>
+<p align="left">
+    <img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Foundation X - Dataset_Collection.png" width=70% height=70%>
     <em>image_caption</em>
 </p>
 
