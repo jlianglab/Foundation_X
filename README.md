@@ -59,12 +59,12 @@ Developing deep-learning models for medical imaging requires large, annotated da
 </p>
 
 ## Data organization and preprocessing steps
-Data split and generated coco format annotation files can be found in the following:
-[Classification/Segmentation Data split](https://www.dropbox.com/scl/fo/j26ybbjq27sfuc075lo2a/AFyr1fdpC0L7ZCPSeX-ZfeE?rlkey=wkbx6r8c7wjhdwp6uxog0k91s&st=5n17jsan&dl=0)
-[Coco Format Localization Annotation Files](https://www.dropbox.com/scl/fo/gqsj733jn9iaw52zebm2r/AC25bQU0pQDhX4FDOEDuolY?rlkey=wgynvi1qyt5yfswwif2md8rdq&st=tnm19p4c&dl=0)
+Data split and generated coco format annotation files can be found in the following:<br/>
+[Classification/Segmentation Data split](https://www.dropbox.com/scl/fo/j26ybbjq27sfuc075lo2a/AFyr1fdpC0L7ZCPSeX-ZfeE?rlkey=wkbx6r8c7wjhdwp6uxog0k91s&st=5n17jsan&dl=0)<br/>
+[Coco Format Localization Annotation Files](https://www.dropbox.com/scl/fo/gqsj733jn9iaw52zebm2r/AC25bQU0pQDhX4FDOEDuolY?rlkey=wgynvi1qyt5yfswwif2md8rdq&st=tnm19p4c&dl=0)<br/>
 
 ## Pre-trained models
-You can download the pretrained models used/developed in our paper from [here](https://www.dropbox.com/scl/fo/nin8bu3cygdmdrmafuidl/AA_xaDmfd2o9aMTT_ZXGklM?rlkey=hdxjv89qk0u47dhh3sxsna8iy&st=hg78rq19&dl=0).
+You can download the pretrained models from [here](https://www.dropbox.com/scl/fo/nin8bu3cygdmdrmafuidl/AA_xaDmfd2o9aMTT_ZXGklM?rlkey=hdxjv89qk0u47dhh3sxsna8iy&st=hg78rq19&dl=0).
 
 ## Citation
 If you use this code or use our pre-trained models for your research, please cite our paper:
