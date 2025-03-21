@@ -40,7 +40,7 @@ import math
 from timm.scheduler import create_scheduler
 from timm.optim import create_optimizer, create_optimizer_v2, optimizer_kwargs
 
-from engineClsSeg import evaluate as evaluateLocSepFunc
+# from engineClsSeg import evaluate as evaluateLocSepFunc
 
 import pandas as pd
 import csv
