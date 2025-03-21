@@ -38,8 +38,8 @@ Developing deep-learning models for medical imaging requires large, annotated da
 - Data splits and generated COCO-format localization bouding box annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
 
 ## Pretraining Instructions
-- Follow the script `scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh` to start pretraining **Foundation X model**. <br/>
-- Make sure to update the data direcotry in the files [`datasets/coco.py`](https://github.com/jlianglab/Foundation_X/blob/main/datasets/coco.py) (for localization tasks) and [datasets_medical.py](https://github.com/jlianglab/Foundation_X/blob/main/datasets_medical.py) (for classification and segmentation tasks). <br/>
+- Follow the script [`scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh`](https://github.com/jlianglab/Foundation_X/blob/main/scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh) to start pretraining **Foundation X model**. <br/>
+- Make sure to update the data direcotry in the files [`datasets/coco.py`](https://github.com/jlianglab/Foundation_X/blob/main/datasets/coco.py) (for localization tasks) and [`datasets_medical.py`](https://github.com/jlianglab/Foundation_X/blob/main/datasets_medical.py) (for classification and segmentation tasks). <br/>
 - 
 
 ## Pre-trained models
