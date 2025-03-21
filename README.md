@@ -44,7 +44,7 @@ Developing deep-learning models for medical imaging requires large, annotated da
 - If Segmentation Heads need to be increased or decreased the file [`models/dino/swin_transformer_CyclicSegmentation.py`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/swin_transformer_CyclicSegmentation.py#L672) should be modified.
 - If the number of Localization Decoders needs to be adjusted, the following code snippet must be modified. Currently, the code reflects 6 Localization Decoders. <br/>
     [`models/dino/dino_F6.py Line159`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L159) <br/>
-    [`models/dino/dino_F6.py Line221'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L221) <br/>
+    [`models/dino/dino_F6.py Line221`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L221) <br/>
     [`models/dino/dino_F6.py Line252`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L252) <br/>
     ['models/dino/deformable_transformer_F6.py Line153'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L153) <br/>
     ['models/dino/deformable_transformer_F6.py Line201'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L201) <br/>
