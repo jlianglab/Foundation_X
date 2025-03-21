@@ -40,7 +40,18 @@ Developing deep-learning models for medical imaging requires large, annotated da
 ## Pretraining Instructions
 - Follow the script [`scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh`](https://github.com/jlianglab/Foundation_X/blob/main/scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh) to start pretraining **Foundation X model**. <br/>
 - Make sure to update the data direcotry in the files [`datasets/coco.py`](https://github.com/jlianglab/Foundation_X/blob/main/datasets/coco.py) (for localization tasks) and [`datasets_medical.py`](https://github.com/jlianglab/Foundation_X/blob/main/datasets_medical.py) (for classification and segmentation tasks). <br/>
-- 
+- If Classification Heads need to be increased or decreased the file [`models/dino/swin_transformer_CyclicSegmentation.py`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/swin_transformer_CyclicSegmentation.py#L637) should be modified.
+- If Segmentation Heads need to be increased or decreased the file [`models/dino/swin_transformer_CyclicSegmentation.py`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/swin_transformer_CyclicSegmentation.py#L672) should be modified.
+- If the number of Localization Decoders needs to be adjusted, the following code snippet must be modified. Currently, the code reflects 6 Localization Decoders.
+    [`models/dino/dino_F6.py Line159`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L159)
+    [`models/dino/dino_F6.py Line221'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L221)
+    [`models/dino/dino_F6.py Line252`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L252)
+    ['models/dino/deformable_transformer_F6.py Line153'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L153)
+    ['models/dino/deformable_transformer_F6.py Line201'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L201)
+    ['models/dino/deformable_transformer_F6.py Line236'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L236)
+    ['models/dino/deformable_transformer_F6.py Line259'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L259)
+    ['models/dino/deformable_transformer_F6.py Line282'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L282)
+
 
 ## Pre-trained models
 You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
