@@ -44,23 +44,9 @@ def l2_regularizer(weights):
 
 def ema_update_teacher(model, teacher, momentum_schedule, it, total_epochs_args):
     with torch.no_grad():
-        # if it < 10:
-        #     m = momentum_schedule[it]  # momentum parameter
-        # else:
-        #     m = momentum_schedule[9]
         m = 0.80
         for param_q, param_k in zip(model.parameters(), teacher.parameters()):
             param_k.data.mul_(m).add_((1 - m) * param_q.detach().data)
-
-# def ema_update_teacher(model, teacher, momentum_schedule, it, total_epochs_args):
-#     with torch.no_grad():
-#         if it < total_epochs_args:
-#             m = momentum_schedule[it]  # momentum parameter
-#         else:
-#             m = momentum_schedule[total_epochs_args-1]
-            
-#         for param_q, param_k in zip(model.parameters(), teacher.parameters()):
-#             param_k.data.mul_(m).add_((1 - m) * param_q.detach().data)
 
 
 
@@ -92,64 +78,7 @@ def train_ignore_labels_multiLabelTraining(outputs, label2ignore=None):
     outputs['pred_logits']  = out_logits
     outputs['pred_boxes'] = out_bbox
 
-
-    # for JJJ in range(0, len(outputs['aux_outputs'])):
-    #     out_logits, out_bbox = outputs['aux_outputs'][JJJ]['pred_logits'], outputs['aux_outputs'][JJJ]['pred_boxes']
-    #     print("AUX out_logits", JJJ, out_logits.shape)
-    #     for III in range(0, len(out_logits)): ## For each samples in the batch
-    #         ignore_index_label = label2ignore ## Ignore predictions for Heart
-    #         print("AUX out_logits", JJJ, III, out_logits[III].shape)
-
-    #         probabilities = out_logits[III].sigmoid()
-            
-    #         ignore_index_list_labels = (torch.argmax(probabilities, dim=-1) == ignore_index_label).nonzero()
-    #         raw_ignore_index_list_labels_values = ignore_index_list_labels[:,0]
-    #         available_indices = [index for index in range(0, out_logits.shape[1]) if index not in raw_ignore_index_list_labels_values]
-            
-    #         filtered_out_logits = out_logits[III].clone()
-    #         filtered_out_logits[raw_ignore_index_list_labels_values] = out_logits[III, available_indices[0]] ## Using the first available index value
-
-    #         filtered_out_bbox = out_bbox[III].clone()
-    #         filtered_out_bbox[raw_ignore_index_list_labels_values] = out_bbox[III, available_indices[0]]
-
-    #         out_logits[III] = filtered_out_logits
-    #         out_bbox[III] = filtered_out_bbox
-
-    #     outputs['aux_outputs'][JJJ]['pred_logits'], outputs['aux_outputs'][JJJ]['pred_boxes'] = out_logits, out_bbox
-
     return outputs
-
-# def train_ignore_labels_multiLabelTraining(outputs, label2ignore=None):
-#     if label2ignore is None:
-#         return outputs
-
-#     def process_outputs(out_logits, out_bbox):
-#         for III in range(len(out_logits)):
-#             ignore_index_label = label2ignore
-#             probabilities = out_logits[III].sigmoid()
-
-#             ignore_index_list_labels = (torch.argmax(probabilities, dim=-1) == ignore_index_label).nonzero()
-#             raw_ignore_index_list_labels_values = ignore_index_list_labels[:, 0]
-#             available_indices = [index for index in range(out_logits.shape[1]) if index not in raw_ignore_index_list_labels_values]
-
-#             filtered_out_logits = out_logits[III].clone()
-#             filtered_out_logits[raw_ignore_index_list_labels_values] = out_logits[III, available_indices[0]]
-
-#             filtered_out_bbox = out_bbox[III].clone()
-#             filtered_out_bbox[raw_ignore_index_list_labels_values] = out_bbox[III, available_indices[0]]
-
-#             out_logits[III] = filtered_out_logits
-#             out_bbox[III] = filtered_out_bbox
-
-#         return out_logits, out_bbox
-
-#     outputs['pred_logits'], outputs['pred_boxes'] = process_outputs(outputs['pred_logits'], outputs['pred_boxes'])
-
-#     for JJJ in range(len(outputs['aux_outputs'])):
-#         out_logits, out_bbox = outputs['aux_outputs'][JJJ]['pred_logits'], outputs['aux_outputs'][JJJ]['pred_boxes']
-#         outputs['aux_outputs'][JJJ]['pred_logits'], outputs['aux_outputs'][JJJ]['pred_boxes'] = process_outputs(out_logits, out_bbox)
-
-#     return outputs
 
 
 
@@ -176,12 +105,6 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
 
     _cnt = 0
     for samples, targets in metric_logger.log_every(data_loader, print_freq, header, logger=logger):
-        # if _cnt == 501: # for cyclic individual localization task (Left Lung, Right Lung, Heart)
-        #     break
-
-        # print()
-        # print("[CHECK Freeze unFreeze] train_type", train_type, "length dataloader", len(data_loader), "half", len(data_loader)//2)
-        # print()
         if train_type == 'F': # 'F' -- means the backbone and loc.encoder is frozen --> train randomly on half of the trainingSet
             if _cnt == len(data_loader)//2:
                 break
@@ -196,40 +119,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
                 # print("[Check - Train1Epoch] outputs", outputs.shape)
             else:
                 outputs, features_cons, features_Encons = model(samples)
-            
-            # if DetHead != None:
-            #     target_gt_dictList = []
-            #     for jjj in range(0, len(targets)):
-            #         # print("[CHECK] size", targets[jjj]['size'])
-            #         target_gt_dict = {
-            #             'boxes': torch.tensor( [targets[jjj]['boxes'][DetHead].tolist()] ).cuda(),
-            #             'labels': torch.tensor( [targets[jjj]['labels'][DetHead].tolist()] ).cuda(),
-            #             'image_id': torch.tensor( [targets[jjj]['image_id'][0].item()] ).cuda(), # image_id always contain one element
-            #             'area': torch.tensor( [targets[jjj]['area'][DetHead].item()] ).cuda(),
-            #             'iscrowd': torch.tensor( [targets[jjj]['iscrowd'][DetHead].item()] ).cuda(),
-            #             'orig_size': torch.tensor( [targets[jjj]['orig_size'].tolist()] ).cuda(), # Always 2 items - img's [H, W]
-            #             'size': torch.tensor( [targets[jjj]['size'].tolist()] ).cuda(), # Always 2 items - img's [H, W]
-            #         }
-            #         target_gt_dictList.append(target_gt_dict)
-            #     targets = target_gt_dictList
-            #     del target_gt_dict, target_gt_dictList
-            
-            
-            # igmoreLabelList = []
-            # if DetHead == 1: # Keep H and Ignore LL RL
-            #     igmoreLabelList = [2,3]
-            #     # print(" --- CHECK --- Keep H and Ignore LL RL")
-            # elif DetHead == 2: # Keep LL and Ignore H RL
-            #     igmoreLabelList = [1,3]
-            #     # print(" --- CHECK --- Keep LL and Ignore H RL")
-            # elif DetHead == 3: # Keep RL and Ignore H LL
-            #     igmoreLabelList = [1,2]
-            #     # print(" --- CHECK --- Keep RL and Ignore H LL")
-            # for JJJ in range(0, len(igmoreLabelList)):
-            #     outputs = train_ignore_labels_multiLabelTraining(outputs, label2ignore=igmoreLabelList[JJJ])
 
-
-            # print(outputs['pred_logits'].shape, outputs['pred_boxes'].shape)
             loss_dict = criterion(outputs, targets)
             weight_dict = criterion.weight_dict
 
@@ -240,8 +130,6 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
             model_org_temp.eval()
             # with torch.no_grad():
             with torch.cuda.amp.autocast(enabled=args.amp):
-                # print("[Check] Engine Train - Student TaskDetHead", model_org_temp.task_DetHead)
-                # print("[Check] Engine Train - Student TaskDetHead", model_ema.task_DetHead)
                 if need_tgt_for_training:
                     _, features_cons, features_Encons = model_org_temp(samples, targets)
                     _, features_cons_ema, features_Encons_ema = model_ema(samples, targets)
@@ -379,25 +267,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
         # targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
         targets = [{k: to_device(v, device) for k, v in t.items()} for t in targets]
 
-
-        # if DetHead != None:
-        #     target_gt_dictList = []
-        #     for jjj in range(0, len(targets)):
-        #         # print("[CHECK] size", targets[jjj]['size'])
-        #         target_gt_dict = {
-        #             'boxes': torch.tensor( [targets[jjj]['boxes'][DetHead].tolist()] ).cuda(),
-        #             'labels': torch.tensor( [targets[jjj]['labels'][DetHead].tolist()] ).cuda(),
-        #             'image_id': torch.tensor( [targets[jjj]['image_id'][0].item()] ).cuda(), # image_id always contain one element
-        #             'area': torch.tensor( [targets[jjj]['area'][DetHead].item()] ).cuda(),
-        #             'iscrowd': torch.tensor( [targets[jjj]['iscrowd'][DetHead].item()] ).cuda(),
-        #             'orig_size': torch.tensor( [targets[jjj]['orig_size'].tolist()] ).cuda(), # Always 2 items - img's [H, W]
-        #             'size': torch.tensor( [targets[jjj]['size'].tolist()] ).cuda(), # Always 2 items - img's [H, W]
-        #         }
-        #         target_gt_dictList.append(target_gt_dict)
-        #     targets = target_gt_dictList
-        #     del target_gt_dict, target_gt_dictList
-
-
         with torch.cuda.amp.autocast(enabled=args.amp):
             # print("[Check] Engine Eval - TaskDetHead", model.task_DetHead)
             if need_tgt_for_training:
@@ -458,12 +327,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
             panoptic_evaluator.update(res_pano)
         
         if args.save_results:
-            # res_score = outputs['res_score']
-            # res_label = outputs['res_label']
-            # res_bbox = outputs['res_bbox']
-            # res_idx = outputs['res_idx']
-
-
             for i, (tgt, res, outbbox) in enumerate(zip(targets, results, outputs['pred_boxes'])):
                 """
                 pred vars:
@@ -480,9 +343,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
                 gt_label = tgt['labels']
                 gt_info = torch.cat((gt_bbox, gt_label.unsqueeze(-1)), 1)
                 
-                # img_h, img_w = tgt['orig_size'].unbind()
-                # scale_fct = torch.stack([img_w, img_h, img_w, img_h], dim=0)
-                # _res_bbox = res['boxes'] / scale_fct
                 _res_bbox = outbbox
                 _res_prob = res['scores']
                 _res_label = res['labels']
@@ -580,20 +440,6 @@ def test(model, criterion, postprocessors, data_loader, base_ds, device, output_
         targets = [{k: to_device(v, device) for k, v in t.items()} for t in targets]
 
         outputs = model(samples)
-        # loss_dict = criterion(outputs, targets)
-        # weight_dict = criterion.weight_dict
-
-        # # reduce losses over all GPUs for logging purposes
-        # loss_dict_reduced = utils.reduce_dict(loss_dict)
-        # loss_dict_reduced_scaled = {k: v * weight_dict[k]
-        #                             for k, v in loss_dict_reduced.items() if k in weight_dict}
-        # loss_dict_reduced_unscaled = {f'{k}_unscaled': v
-        #                               for k, v in loss_dict_reduced.items()}
-        # metric_logger.update(loss=sum(loss_dict_reduced_scaled.values()),
-        #                      **loss_dict_reduced_scaled,
-        #                      **loss_dict_reduced_unscaled)
-        # if 'class_error' in loss_dict_reduced:
-        #     metric_logger.update(class_error=loss_dict_reduced['class_error'])
 
         orig_target_sizes = torch.stack([t["orig_size"] for t in targets], dim=0)
         results = postprocessors['bbox'](outputs, orig_target_sizes, not_to_xyxy=True)
@@ -656,24 +502,9 @@ def test_NAD(model, criterion, postprocessors, data_loader, base_ds, device, out
     for samples, targets in metric_logger.log_every(data_loader, 10, header, logger=logger):
         samples = samples.to(device)
 
-        # targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
         targets = [{k: to_device(v, device) for k, v in t.items()} for t in targets]
 
         outputs = model(samples)
-        # loss_dict = criterion(outputs, targets)
-        # weight_dict = criterion.weight_dict
-
-        # # reduce losses over all GPUs for logging purposes
-        # loss_dict_reduced = utils.reduce_dict(loss_dict)
-        # loss_dict_reduced_scaled = {k: v * weight_dict[k]
-        #                             for k, v in loss_dict_reduced.items() if k in weight_dict}
-        # loss_dict_reduced_unscaled = {f'{k}_unscaled': v
-        #                               for k, v in loss_dict_reduced.items()}
-        # metric_logger.update(loss=sum(loss_dict_reduced_scaled.values()),
-        #                      **loss_dict_reduced_scaled,
-        #                      **loss_dict_reduced_unscaled)
-        # if 'class_error' in loss_dict_reduced:
-        #     metric_logger.update(class_error=loss_dict_reduced['class_error'])
 
         orig_target_sizes = torch.stack([t["orig_size"] for t in targets], dim=0)
         results = postprocessors['bbox'](outputs, orig_target_sizes, not_to_xyxy=True)
@@ -704,82 +535,6 @@ def test_NAD(model, criterion, postprocessors, data_loader, base_ds, device, out
                         "score": s,
                         }
                 final_res.append(itemdict)
-
-
-        # for image_id, outputs in res.items():
-        #     _labels = targets['labels'].tolist()
-        #     _boxes = targets['boxes'].tolist()
-        #     for l, b in zip(_labels, _boxes):
-        #         assert isinstance(l, int)
-        #         itemdict = {
-        #                 "image_id": int(image_id), 
-        #                 "category_id": l, 
-        #                 "bbox": b, 
-        #                 }
-        #         all_gt.append(itemdict)
-
-
-
-        # if args.save_results:
-        #     # res_score = outputs['res_score']
-        #     # res_label = outputs['res_label']
-        #     # res_bbox = outputs['res_bbox']
-        #     # res_idx = outputs['res_idx']
-        #     for i, (tgt, res, outbbox) in enumerate(zip(targets, results, outputs['boxes'])):
-        #         """
-        #         pred vars:
-        #             K: number of bbox pred
-        #             score: Tensor(K),
-        #             label: list(len: K),
-        #             bbox: Tensor(K, 4)
-        #             idx: list(len: K)
-        #         tgt: dict.
-
-        #         """
-        #         # compare gt and res (after postprocess)
-        #         gt_bbox = tgt['boxes']
-        #         gt_label = tgt['labels']
-        #         # print("[CHECK GT] gt_bbox gt_label", gt_bbox, gt_label)
-        #         # gt_info = torch.cat((gt_bbox, gt_label.unsqueeze(-1)), 1)
-        #         gt_info = gt_bbox
-                
-        #         # img_h, img_w = tgt['orig_size'].unbind()
-        #         # scale_fct = torch.stack([img_w, img_h, img_w, img_h], dim=0)
-        #         # _res_bbox = res['boxes'] / scale_fct
-        #         _res_bbox = outbbox[0]
-        #         _res_prob = res['scores'][0]
-        #         _res_label = res['labels'][0]
-        #         # res_info = torch.cat((_res_bbox, _res_prob.unsqueeze(-1), _res_label.unsqueeze(-1)), 1)
-        #         # print("[CHECK Res] _res_bbox _res_label", _res_bbox, _res_label)
-        #         res_info = _res_bbox
-
-        #         # print( "[CHECK] GT PRE", gt_info.shape, res_info.shape)
-
-        #         # import ipdb;ipdb.set_trace()
-
-        #         if 'gt_info' not in output_state_dict:
-        #             output_state_dict['gt_info'] = []
-        #         output_state_dict['gt_info'].append(gt_info.cpu())
-
-        #         if 'res_info' not in output_state_dict:
-        #             output_state_dict['res_info'] = []
-        #         output_state_dict['res_info'].append(res_info.cpu())
-
-
-    # if args.save_results:
-    #     import os.path as osp
-        
-    #     # output_state_dict['gt_info'] = torch.cat(output_state_dict['gt_info'])
-    #     # output_state_dict['res_info'] = torch.cat(output_state_dict['res_info'])
-    #     savepath = osp.join(args.output_dir, 'results-{}.pkl'.format(utils.get_rank()))
-    #     print("Saving res to {}".format(savepath))
-    #     torch.save(output_state_dict, savepath)
-
-
-    # if args.output_dir:
-    #     import json
-    #     with open(args.output_dir + f'/resultsGT{args.rank}.json', 'w') as f:
-    #         json.dump(all_gt, f)  
 
     if args.output_dir:
         import json
