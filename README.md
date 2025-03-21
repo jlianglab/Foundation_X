@@ -5,7 +5,7 @@ Developing deep-learning models for medical imaging requires large, annotated da
 
 ![](https://github.com/jlianglab/Foundation_X/blob/main/Figures/Foundation%20X%20-%20Method_Figure.png)
 
-## Publications
+## Publication
 **Foundation X: Integrating Classification, Localization, and Segmentation through Lock-Release Pretraining Strategy for Chest X-ray Analysis** <br/>
 [Nahid Ul Islam](https://scholar.google.com/citations?hl=en&user=uusv5scAAAAJ&view_op=list_works&sortby=pubdate)<sup>1</sup>, [DongAo Ma](https://scholar.google.com/citations?user=qbLjOGcAAAAJ&hl=en)<sup>1</sup>, [Jiaxuan Pang](https://scholar.google.com/citations?user=hvE5HSoAAAAJ&hl=en)<sup>1</sup>, [Shivasakthi Senthil Velan](https://scholar.google.com/citations?user=mAmlLQUAAAAJ&hl=en)<sup>1</sup>, [Michael B Gotway](https://www.mayoclinic.org/biographies/gotway-michael-b-m-d/bio-20055566)<sup>2</sup>, and [Jianming Liang](https://scholar.google.com/citations?user=rUTf4hgAAAAJ&hl=en)<sup>1</sup><br/>
 <sup>1</sup>Arizona State University, <sup>2</sup>Mayo Clinic<br/>
