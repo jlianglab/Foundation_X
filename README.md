@@ -38,10 +38,10 @@ Developing deep-learning models for medical imaging requires large, annotated da
 - Data splits and generated COCO-format localization bouding box annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
 
 ## Pre-trained models
-You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
+- You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
 
 ## Setting-up the multiscaledeformableattention package
-Please follow the steps described in [DINO GitHub Repo](https://github.com/IDEA-Research/DINO) to install the package "multiscaledeformableattention".
+- Please follow the steps described in [DINO GitHub Repo](https://github.com/IDEA-Research/DINO) to install the package "multiscaledeformableattention".
 
 ## Pretraining Instructions
 - Follow the script [`scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh`](https://github.com/jlianglab/Foundation_X/blob/main/scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh) to start pretraining **Foundation X model**. <br/>
