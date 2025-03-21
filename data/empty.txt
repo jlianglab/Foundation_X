@@ -1,1 +1,1 @@
-
+You may request the data splits. Please check the readme file for further instructions.
