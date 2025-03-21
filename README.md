@@ -37,6 +37,12 @@ Developing deep-learning models for medical imaging requires large, annotated da
 ## Data Splits and Bounding Box Annotations
 - Data splits and generated COCO-format localization bouding box annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
 
+## Pre-trained models
+You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
+
+## Setting-up the multiscaledeformableattention package
+Please follow the steps described in [DINO GitHub Repo](https://github.com/IDEA-Research/DINO) to install the package "multiscaledeformableattention".
+
 ## Pretraining Instructions
 - Follow the script [`scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh`](https://github.com/jlianglab/Foundation_X/blob/main/scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh) to start pretraining **Foundation X model**. <br/>
 - Make sure to update the data direcotry in the files [`datasets/coco.py`](https://github.com/jlianglab/Foundation_X/blob/main/datasets/coco.py) (for localization tasks) and [`datasets_medical.py`](https://github.com/jlianglab/Foundation_X/blob/main/datasets_medical.py) (for classification and segmentation tasks). <br/>
@@ -51,13 +57,6 @@ Developing deep-learning models for medical imaging requires large, annotated da
     * [`models/dino/deformable_transformer_F6.py Line236`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L236) <br/>
     * [`models/dino/deformable_transformer_F6.py Line259`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L259) <br/>
     * [`models/dino/deformable_transformer_F6.py Line282`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L282) <br/>
-
-
-## Pre-trained models
-You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
-
-## Setting-up the multiscaledeformableattention package
-Please follow the steps described in [DINO GitHub Repo](https://github.com/IDEA-Research/DINO) to install the package "multiscaledeformableattention".
 
 <br/>
 
