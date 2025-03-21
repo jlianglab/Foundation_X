@@ -21,10 +21,6 @@ from utils_segmentation import load_popar_weight, AverageMeter, save_model, dice
 
 def ema_update_teacher(model, teacher, momentum_schedule, it):
     with torch.no_grad():
-        # if it < 10:
-        #     m = momentum_schedule[it]  # momentum parameter
-        # else:
-        #     m = momentum_schedule[9]
         m = 0.80
         for param_q, param_k in zip(model.parameters(), teacher.parameters()):
             param_k.data.mul_(m).add_((1 - m) * param_q.detach().data)
@@ -32,10 +28,6 @@ def ema_update_teacher(model, teacher, momentum_schedule, it):
 
 def ema_update_teacher_Seg(model, teacher, momentum_schedule, it):
     with torch.no_grad():
-        # if it < 10:
-        #     m = momentum_schedule[it]  # momentum parameter
-        # else:
-        #     m = momentum_schedule[9]
         m = 0.50
         for param_q, param_k in zip(model.parameters(), teacher.parameters()):
             param_k.data.mul_(m).add_((1 - m) * param_q.detach().data)
@@ -88,25 +80,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
         # targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
         targets = [{k: to_device(v, device) for k, v in t.items()} for t in targets]
 
-
-        # if DetHead != None:
-        #     target_gt_dictList = []
-        #     for jjj in range(0, len(targets)):
-        #         # print("[CHECK] size", targets[jjj]['size'])
-        #         target_gt_dict = {
-        #             'boxes': torch.tensor( [targets[jjj]['boxes'][DetHead].tolist()] ).cuda(),
-        #             'labels': torch.tensor( [targets[jjj]['labels'][DetHead].tolist()] ).cuda(),
-        #             'image_id': torch.tensor( [targets[jjj]['image_id'][0].item()] ).cuda(), # image_id always contain one element
-        #             'area': torch.tensor( [targets[jjj]['area'][DetHead].item()] ).cuda(),
-        #             'iscrowd': torch.tensor( [targets[jjj]['iscrowd'][DetHead].item()] ).cuda(),
-        #             'orig_size': torch.tensor( [targets[jjj]['orig_size'].tolist()] ).cuda(), # Always 2 items - img's [H, W]
-        #             'size': torch.tensor( [targets[jjj]['size'].tolist()] ).cuda(), # Always 2 items - img's [H, W]
-        #         }
-        #         target_gt_dictList.append(target_gt_dict)
-        #     targets = target_gt_dictList
-        #     del target_gt_dict, target_gt_dictList
-
-
         with torch.cuda.amp.autocast(enabled=args.amp):
             if need_tgt_for_training:
                 outputs, _, _ = model(samples, targets)
@@ -141,9 +114,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
             metric_logger.update(class_error=loss_dict_reduced['class_error'])
 
         orig_target_sizes = torch.stack([t["orig_size"] for t in targets], dim=0)
-        # print("[CHECK] outputs", outputs)
-        # print("[CHECK] orig_target_sizes[0]", orig_target_sizes[0])
-        # print("[CHECK] orig_target_sizes", orig_target_sizes)
         try:
             results = postprocessors['bbox'](outputs, orig_target_sizes) ## Regular without DetHead
         except:
@@ -169,12 +139,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
             panoptic_evaluator.update(res_pano)
         
         if args.save_results:
-            # res_score = outputs['res_score']
-            # res_label = outputs['res_label']
-            # res_bbox = outputs['res_bbox']
-            # res_idx = outputs['res_idx']
-
-
             for i, (tgt, res, outbbox) in enumerate(zip(targets, results, outputs['pred_boxes'])):
                 """
                 pred vars:
@@ -191,9 +155,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
                 gt_label = tgt['labels']
                 gt_info = torch.cat((gt_bbox, gt_label.unsqueeze(-1)), 1)
                 
-                # img_h, img_w = tgt['orig_size'].unbind()
-                # scale_fct = torch.stack([img_w, img_h, img_w, img_h], dim=0)
-                # _res_bbox = res['boxes'] / scale_fct
                 _res_bbox = outbbox
                 _res_prob = res['scores']
                 _res_label = res['labels']
@@ -222,9 +183,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
 
     if args.save_results:
         import os.path as osp
-        
-        # output_state_dict['gt_info'] = torch.cat(output_state_dict['gt_info'])
-        # output_state_dict['res_info'] = torch.cat(output_state_dict['res_info'])
         savepath = osp.join(args.output_dir, 'results-{}.pkl'.format(utils.get_rank()))
         print("Saving res to {}".format(savepath))
         torch.save(output_state_dict, savepath)
@@ -255,8 +213,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
         stats['PQ_all'] = panoptic_res["All"]
         stats['PQ_th'] = panoptic_res["Things"]
         stats['PQ_st'] = panoptic_res["Stuff"]
-
-
 
     return stats, coco_evaluator, features_detectionList
 
@@ -329,15 +285,7 @@ def train_one_epoch_SEGMENTATION(args, model, train_loader, optimizer, loss_scal
         loss_scaler(loss, optimizer, clip_grad=None,
                     parameters=model.parameters(), create_graph=is_second_order)
 
-
         torch.cuda.synchronize()
-
-        # print("CHECK!!!CHECK!!!CHECK!!!CHECK!!!CHECK!!!CHECK!!!CHECK!!!CHECK!!!CHECK!!!CHECK!!!CHECK!!!")
-        # for b in range(bsz):
-        #     save_image(img[b].cpu().numpy().transpose(1, 2, 0), args.output_dir+"sample_images/{}_{}_input".format("train", b))
-        #     save_image(mask[b].cpu().numpy(), args.output_dir+"sample_images/{}_{}_input".format("trainMASK", b))
-        # exit(0)
-
 
         # measure elapsed time
         batch_time.update(time.time() - end)
@@ -374,21 +322,11 @@ def evaluation_SEGMENTATION(args, model, val_loader, epoch, head_number=None, lo
                     print("Segmentation Test Break!!"*5)
                     break
             bsz = img.shape[0]
-
-            # img = img.double().cuda(non_blocking=True)
-            # mask = mask.double().cuda(non_blocking=True)
             img = img.cuda(non_blocking=True) 
             mask = mask.cuda(non_blocking=True) 
 
             img = img.float()
             mask = mask.float()
-
-            # if conf.arch == "swin_upernet":
-            #     enco_out = model.extract_feat(img)
-            #     outputs = model.decode_head.forward(enco_out)
-            #     outputs = F.interpolate(outputs, size=conf.img_size, mode='bilinear')
-            # else:
-            # outputs = torch.sigmoid( model(img) ) # out_features, out_classifierHead, out_SegmentationHead = model.backbone(img)
 
             if isinstance(model, torch.nn.parallel.DistributedDataParallel):
                 # out_features, out_classifierHead, out_SegmentationHead = model.module.backbone(img)
@@ -421,17 +359,6 @@ def evaluation_SEGMENTATION(args, model, val_loader, epoch, head_number=None, lo
     return losses.avg
 
 def test_SEGMENTATION(args, model, test_loader, head_number=None, log_writter_SEGMENTATION=None):
-
-    # checkpoint = torch.load(checkpoint_path, map_location='cpu')
-    # checkpoint_model = {k.replace("module.", ""): v for k, v in checkpoint['model'].items()}
-    # model.load_state_dict(checkpoint_model)
-
-    # model = model.cuda()
-    # if torch.cuda.is_available():
-    #     model = torch.nn.DataParallel(model, device_ids=[i for i in range(torch.cuda.device_count())])
-    #     model = model.cuda()
-    #     cudnn.benchmark = True
-
     features_segmentationList = []
     model.eval()
     with torch.no_grad():
@@ -445,20 +372,11 @@ def test_SEGMENTATION(args, model, test_loader, head_number=None, log_writter_SE
                     break
             bsz = img.shape[0]
             with torch.cuda.amp.autocast():
-                # img = img.double().cuda(non_blocking=True)
-                # mask = mask.cuda(non_blocking=True)
                 img = img.cuda(non_blocking=True)
                 mask = mask.cuda(non_blocking=True)
 
                 img = img.float()
                 mask = mask.float()
-
-                # if conf.arch == "swin_upernet":
-                #     enco_out = model.extract_feat(img)
-                #     outputs = model.decode_head.forward(enco_out)
-                #     outputs = F.interpolate(outputs, size=conf.img_size, mode='bilinear')
-                # else:
-                # outputs = torch.sigmoid(model(img))
 
                 if isinstance(model, torch.nn.parallel.DistributedDataParallel):
                     # out_features, out_classifierHead, out_SegmentationHead = model.module.backbone(img)
@@ -486,23 +404,6 @@ def test_SEGMENTATION(args, model, test_loader, head_number=None, log_writter_SE
 
                 outputs = outputs.cpu().detach()
                 mask = mask.cpu().detach()
-
-                # # FOR SAVING IMAGES
-                # if conf.dataset =="vindrribcxr":
-                #     for b in range(bsz):
-                #         save_image(img[b].cpu().numpy().transpose(1, 2, 0), conf.model_path+"/{}_{}_input".format("test", b))
-                #         for i in range(conf.num_classes):
-                #             save_image(mask[b].cpu().numpy()[i],
-                #                        conf.model_path + "/{}_iter_{}_batch_{}_mask_{}".format("test",idx, b,i))
-                #             save_image(outputs[b].cpu().numpy()[i],
-                #                        conf.model_path + "/{}_iter_{}_batch_{}_pred_{}".format("test",idx, b,i))
-
-                # else:
-                #     for b in range(bsz):
-                #         save_image(img[b].cpu().numpy().transpose(1, 2, 0), conf.model_path+"/{}_{}_input".format("test", b))
-                #         save_image(mask[b].cpu().squeeze(0).numpy(), conf.model_path+"/{}_{}_mask".format("test", b))
-                #         save_image(outputs[b].cpu().squeeze(0).numpy(), conf.model_path+"/{}_{}_pred".format("test", b))
-
 
                 if test_p is None and test_y is None:
                     test_p = outputs
@@ -624,29 +525,18 @@ def train_CLASSIFICATION(args, train_loader, model, criterion, optimizer, epoch,
         # measure data loading time
         data_time.update(time.time() - end)
 
-        # if args.gpu is not None:
-        #     images = images.cuda(args.gpu, non_blocking=True)
-        # if torch.cuda.is_available():
-        #     target = target.cuda(args.gpu, non_blocking=True)
         images, target = images.float().to(device), target.float().to(device) # NIH14 # int for CheXpert
-        # print("[CHECK train_Classification] target value", target)
-        # print("[CHECK train_Classification] images shape", images.shape)
 
         target = target.unsqueeze(1) ## For Binary Classification
         if args.taskcomponent == 'detection_vindrcxr_disease' or task_cls_type == 'nonBinary': ## For Multi-label Classification
           target = target.squeeze(1)
 
 
-        # compute output
-        # output = model(images)
         if isinstance(model, torch.nn.parallel.DistributedDataParallel):
-            # _, out_classifierHead, _ = model.module.backbone(images)
             out_classifierHead, features_cons = model.module.backbone[0].extra_features(images, head_number)
         else:
-            # _, out_classifierHead, _ = model.backbone(images)
             out_classifierHead, features_cons = model.backbone[0].extra_features(images, head_number)
         output = out_classifierHead
-        #print(f"[CHECK Train_Classification] output{output.shape}, target shapes: { target.shape}")
         loss = criterion(output, target)
 
 
@@ -726,22 +616,12 @@ def evaluate_CLASSIFICATION(args, val_loader, model, criterion, log_writter_CLAS
         for i, (images, target) in enumerate(val_loader):
             if args.debug and i == 500:
                 break
-            # if args.gpu is not None:
-            #     images = images.cuda(args.gpu, non_blocking=True)
-            # if torch.cuda.is_available():
-            #     target = target.cuda(args.gpu, non_blocking=True)
 
             images, target = images.float().to(device), target.float().to(device) # NIH14 # int for CheXpert
             target = target.unsqueeze(1)
             if args.taskcomponent == 'detection_vindrcxr_disease' or task_cls_type == 'nonBinary':
               target = target.squeeze(1)
               
-            # print("[CHECK Eval_Classification] images shape", images.shape)
-            # print(target.shape)
-
-
-            # compute output
-            # output = model(images) ## was active
             if isinstance(model, torch.nn.parallel.DistributedDataParallel):
                 # _, out_classifierHead, _ = model.module.backbone(images)
                 out_classifierHead, _ = model.module.backbone[0].extra_features(images, head_number)
