@@ -46,11 +46,11 @@ Developing deep-learning models for medical imaging requires large, annotated da
     [`models/dino/dino_F6.py Line159`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L159) <br/>
     [`models/dino/dino_F6.py Line221`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L221) <br/>
     [`models/dino/dino_F6.py Line252`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/dino_F6.py#L252) <br/>
-    ['models/dino/deformable_transformer_F6.py Line153'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L153) <br/>
-    ['models/dino/deformable_transformer_F6.py Line201'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L201) <br/>
-    ['models/dino/deformable_transformer_F6.py Line236'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L236) <br/>
-    ['models/dino/deformable_transformer_F6.py Line259'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L259) <br/>
-    ['models/dino/deformable_transformer_F6.py Line282'](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L282) <br/>
+    [`models/dino/deformable_transformer_F6.py Line153`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L153) <br/>
+    [`models/dino/deformable_transformer_F6.py Line201`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L201) <br/>
+    [`models/dino/deformable_transformer_F6.py Line236`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L236) <br/>
+    [`models/dino/deformable_transformer_F6.py Line259`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L259) <br/>
+    [`models/dino/deformable_transformer_F6.py Line282`](https://github.com/jlianglab/Foundation_X/blob/main/models/dino/deformable_transformer_F6.py#L282) <br/>
 
 
 ## Pre-trained models
