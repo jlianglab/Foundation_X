@@ -39,6 +39,12 @@ Developing deep-learning models for medical imaging requires large, annotated da
 - Make sure to update the data direcotry in the files `datasets/coco.py` (for localization tasks) and `datasets_medical.py` (for classification and segmentation tasks). <br/>
 - Follow the script `scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v102.sh` to start pretraining **Foundation X model**. <br/>
 
+## Pre-trained models
+You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
+
+## Setting-up the multiscaledeformableattention package
+Please follow the steps described in [DINO GitHub Repo](https://github.com/IDEA-Research/DINO) to install the package "multiscaledeformableattention".
+
 <br/>
 
 ## Major results from our work
@@ -69,12 +75,6 @@ Developing deep-learning models for medical imaging requires large, annotated da
 <p align="left">
 <img src="https://github.com/jlianglab/Foundation_X/blob/main/Figures/Result_FoundationX_Discussion_Localization_VinDrCXR.png" width=70% height=70%>
 </p>
-
-## Pre-trained models
-You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
-
-## Setting-up the multiscaledeformableattention package
-Please follow the steps described in [DINO GitHub Repo](https://github.com/IDEA-Research/DINO) to install the package "multiscaledeformableattention".
 
 <br/>
 
