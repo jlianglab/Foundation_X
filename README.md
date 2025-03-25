@@ -12,7 +12,7 @@ Developing deep-learning models for medical imaging requires large, annotated da
 [Winter Conference on Applications of Computer Vision (WACV-2025)](https://wacv2025.thecvf.com/)<br/>
 [Paper](https://openaccess.thecvf.com/content/WACV2025/papers/Islam_Foundation_X_Integrating_Classification_Localization_and_Segmentation_through_Lock-Release_Pretraining_WACV_2025_paper.pdf) | [Supp](https://openaccess.thecvf.com/content/WACV2025/supplemental/Islam_Foundation_X_Integrating_WACV_2025_supplemental.pdf) | [Poster](https://github.com/jlianglab/Foundation_X/blob/main/Figures/FoundationX_POSTER.pdf) | [Code](https://github.com/jlianglab/Foundation_X) | [Presentation Slides](https://github.com/jlianglab/Foundation_X/blob/main/Figures/Foundation%20X%20-%20Presentation_Slides.pdf) | [Presentation](https://youtu.be/eT3vatrU8MU?si=nzJc0JdCS6Q1txGh)
 
-## Datasets ([Full View]((https://github.com/jlianglab/Foundation_X/blob/main/Figures/Foundation_X_Dataset_Collection.png)))
+## Datasets ([Full View](https://github.com/jlianglab/Foundation_X/blob/main/Figures/Foundation_X_Dataset_Collection.png))
 1. [CheXpert](https://stanfordmlgroup.github.io/competitions/chexpert/)
 2. [NIH ChestX-ray14](https://www.kaggle.com/datasets/nih-chest-xrays/data)
 3. [VinDr-CXR](https://vindr.ai/datasets/cxr)
