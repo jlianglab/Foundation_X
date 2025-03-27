@@ -40,7 +40,7 @@ Developing deep-learning models for medical imaging requires large, annotated da
 ## Pre-trained models
 - You can download the pretrained models through this [Google Form](https://forms.gle/7ynYFcoiKYYwQNWG8).
 
- ### Loading pre-trained Foundation X checkpoints and extracting features
+ ## Loading pre-trained Foundation X checkpoints and extracting features
  We provide a utility script `load_weights.py` to initialize a Swin-B backbone using our pretrained Foundation X checkpoints. The model only loads the encoder weights from the checkpoint, and supports an optional projection layer.
 
  #### Example: Load model and extract features
