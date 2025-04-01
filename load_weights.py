@@ -71,7 +71,7 @@ def build_model(pretrained_weights, num_classes=0, img_size=224, projector_featu
     )
 
   state_dict = torch.load(pretrained_weights, map_location='cpu')
-  state_dict = state_dict["teacher_model"]
+  state_dict = state_dict["teacher_model"] ## To load the Teacher model: "teacher_model" || To load the Student model: "model"
   new_state_dict = {}
   for key, value in state_dict.items():
       if "head" in key or "attn_mask" in key:
