@@ -20,6 +20,8 @@ import copy
 # import SimpleITK as sitk
 from tqdm import tqdm
 
+from config.config_datasets import DATASETS_CONFIG
+
 import albumentations
 from albumentations import Compose, HorizontalFlip, Normalize, VerticalFlip, Rotate, Resize, ShiftScaleRotate, OneOf, GridDistortion, OpticalDistortion, \
     ElasticTransform, IAAAdditiveGaussianNoise, GaussNoise, MedianBlur,  Blur, CoarseDropout,RandomBrightnessContrast,RandomGamma,RandomSizedCrop, ToFloat
@@ -3959,7 +3961,7 @@ def dataloader_return(args):
             train_loader_loc_SiimACR, test_loader_loc_SiimACR, dataset_val_loc_SiimACR, sampler_train_SiimACR, \
             train_loader_seg_ChestXDet, test_loader_seg_ChestXDet, train_loader_seg_SIIM, test_loader_seg_SIIM, train_loader_seg_CANDIDptx, test_loader_seg_CANDIDptx
     
-
+    
     if args.taskcomponent in ['foundation_x3_pretraining']:       
         ## Dataloader for Classification -------------------------------------------------------------
         train_list = 'data/xray14/official/train_official.txt'
