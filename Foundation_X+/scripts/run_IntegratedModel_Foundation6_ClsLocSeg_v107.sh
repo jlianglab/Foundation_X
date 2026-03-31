@@ -22,16 +22,12 @@ source activate tf-tnt-gpu2
 
 # # Swin-L + DINO
 CONFIGFILE=config/DINO/DINO_4scale_swinBASE.py
-# LOGFILE=Model_Checkpoints/IntegratedModel_DINOpipeline/IntegratedModel_FoundationX/run101_F6_Seg_1stRun_Debug
-# RCons_1LocDec = Real Consolidation sharing Loc and Seg branch + only 1 localization decoder
 LOGFILE=/scratch/nuislam/Model_Checkpoints/IntegratedModel_DINOpipeline/IntegratedModel_FoundationX3/run104_Ark6F6_ClsLocSeg_b24_AdamW_LockReleaseAll_RCons_1LocDec_TESTrun
-# backbone_dir=/mnt/dfs/nuislam/pretrainedModels/Ark6/TSconsist_NoOD_MIMIC_CheXpert_ChestXray14_RSNAPneumonia_VinDrCXR_Shenzhen_ep200.pth.tar 
 backbone_dir=/data/jliang12/dongaoma/Ark_models/TSconsist_NoOD_MIMIC_CheXpert_ChestXray14_RSNAPneumonia_VinDrCXR_Shenzhen_ep200.pth.tar
 
 BACKBONEMODEL=Swin-B # Swin-T, Swin-B, Swin-L
 IMGSIZE=224 # 448
 coco_path=/scratch/jliang12/data/VinDr-CXR/physionet.org/files/vindr-cxr/1.0.0/
-# coco_path=/mnt/dfs/jpang12/datasets/VinDr-CXR/physionet.org/files/vindr-cxr/1.0.0/
 DATASETFILE=foundation6Ark6_datasets
 
 ### 1e-1 = 0.1
@@ -83,12 +79,12 @@ EMAMODE=True_Epoch
 
 cyclictask=chexpertCLS_nihchestxray14CLS_vindrcxrCLS_nihshenzenCLS_mimic2CLS_tbx11kCLS_node21CLS_candidptxCLS_rsnapneumoniaCLS_chestxdetCLS_siimacrCLS_tbx11kLOC_node21LOC_candidptxLOC_rsnapneumoniaLOC_chestxdetLOC_siimacrLOC_candidptxSEG_chestxdetSEG_siimacrSEG
 # cls_loc_seg | seg | loc | loc_seg | cls_loc | cls
-# --resume $RESUME --debugOnlyTest --saveAllModel --debug
+# --debugOnlyTest --saveAllModel --debug
 
 export MASTER_ADDR=127.0.0.1
 export MASTER_PORT=29501
 
-RESUME=/scratch/nuislam/Model_Checkpoints/IntegratedModel_DINOpipeline/IntegratedModel_FoundationX3/run104_Ark6F6_ClsLocSeg_b24_AdamW_LockReleaseAll_RCons_1LocDec/ckpt_E930_TH9.pth
+# RESUME=/scratch/nuislam/Model_Checkpoints/IntegratedModel_DINOpipeline/IntegratedModel_FoundationX3/run104_Ark6F6_ClsLocSeg_b24_AdamW_LockReleaseAll_RCons_1LocDec/ckpt_E930_TH9.pth
 # --resume $RESUME
 
 # ~/.conda/envs/tf-tnt-gpu2/bin/python 
@@ -96,7 +92,7 @@ RESUME=/scratch/nuislam/Model_Checkpoints/IntegratedModel_DINOpipeline/Integrate
 	--output_dir $LOGFILE -c $CONFIGFILE --imgsize $IMGSIZE --backbonemodel $BACKBONEMODEL --init $INIT --total_epochs $total_epochs --batch_size $BATCHSIZE --opt $opt \
 	--finetune_ignore label_enc.weight class_embed \
 	--backbone_dir $backbone_dir --lr_backbone $lr_backbone --lr_locEnc $lr_locEnc --lr_locDec $lr_locDec  --lr_segmentor $lr_segmentor \
-	--cyclictask $cyclictask --serverC $SERVER --modelEMA $EMAMODE --resume $RESUME --saveAllModel \
+	--cyclictask $cyclictask --serverC $SERVER --modelEMA $EMAMODE --saveAllModel \
 	--options dn_scalar=100 embed_init_tgt=TRUE \
 	dn_label_coef=1.0 dn_bbox_coef=1.0 use_ema=False \
 	dn_box_noise_scale=1.0
