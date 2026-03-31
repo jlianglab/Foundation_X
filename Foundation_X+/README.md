@@ -74,6 +74,10 @@ This configuration trains on NIH ChestX-ray14 classification, Node21 classificat
 | chestxdetCLS         |                    |                |
 | siimacrCLS           |                    |                |
 
+## Foundation X+ Pretraining Results
+<p align="left">
+<img src="https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/Figures/PretrainingResult_FX%2B.png" width=75% height=75%>
+</p>
 
 ## Acnkowledgement
 This research was partially supported by ASU and Mayo Clinic through a Seed Grant and an Innovation Grant, as well as by the NIH under Award Number R01HL128785. The authors are solely responsible for the content, which does not necessarily reflect the official views of the NIH. This work also utilized GPUs provided by ASU Research Computing (SOL), Bridges-2 at the Pittsburgh Supercomputing Center (allocated under BCS190015), and Anvil at Purdue University (allocated under MED220025). These resources are supported by the Advanced Cyberinfrastructure Coordination Ecosystem: Services & Support (ACCESS) program, funded by the National Science Foundation under grants #2138259, #2138286, #2138307, #2137603, and #2138296. We also extend our gratitude to Anirudh Kaniyar Narayana Iyengar for his contributions to collecting localization data, preparing bounding boxes in COCO format, and developing some of the data loaders. Finally, the content of this paper is covered by patents pending.
