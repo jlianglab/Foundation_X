@@ -1,4 +1,4 @@
-![](Foundation_X+/Figures/FoundationX+_Logo.png)
+![](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/Figures/FoundationX%2B_Logo.png)
 <!-- # Integrating Classification, Localization, and Segmentation through Lock-Release Pretraining Strategy for Chest X-ray Analysis -->
 
 # Foundation X+
