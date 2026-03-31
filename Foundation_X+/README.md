@@ -53,7 +53,7 @@ with torch.no_grad():
 ```
 cyclictask=chexpertCLS_nihchestxray14CLS_vindrcxrCLS_nihshenzenCLS_mimic2CLS_tbx11kCLS_node21CLS_candidptxCLS_rsnapneumoniaCLS_chestxdetCLS_siimacrCLS_tbx11kLOC_node21LOC_candidptxLOC_rsnapneumoniaLOC_chestxdetLOC_siimacrLOC_candidptxSEG_chestxdetSEG_siimacrSEG
 ```
-- You can select any combination of datasets and tasks by concatenating them with _. For example:
+- You can select any combination of datasets and tasks by concatenating them with `_`. For example:
 ```
 cyclictask=nihchestxray14CLS_node21CLS_node21LOC_candidptxSEG
 ```
