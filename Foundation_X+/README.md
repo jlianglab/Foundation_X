@@ -3,7 +3,7 @@
 ## Data Splits and Bounding Box Annotations
 - Data splits and generated COCO-format localization bouding box annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
 - The [config.py](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/config/config_datasets.py) file defines the directory structure for all datasets and specifies the task head indices associated with each task.
-- 
+  
 ## Pre-trained models
 - You can download the pretrained models through this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScK8x0awPHDWGWnN-pU64nTBWaK0nTKHyl2OcxPGp4rOCsSHg/viewform?usp=publish-editor).
 
