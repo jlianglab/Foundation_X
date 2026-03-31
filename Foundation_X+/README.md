@@ -40,12 +40,12 @@ with torch.no_grad():
 
 ## Pretraining Foundation X+ Instructions
 **Script:**
-- Use the script [`scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh`](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh) to start pretraining **Foundation X+ model**. <br/>
+- Use the script [scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh) to start pretraining **Foundation X+ model**. <br/>
 - This script launches pretraining across all 11 datasets and 20 tasks.
 - Update the LOGFILE parameter to specify where pretrained models will be saved.
 - Use the `--debug` flag to run a quick check and identify potential issues before full pretraining.
 - Use `--resume $RESUME` to load pretrained weights and continue training from a specified checkpoint.
-- Follow the `foundation_x5_pretraining` taskcomponent in [`main_Consolidated.py`](Foundation_X+/main_Consolidated.py) to see how Foundation X+ is trained. You can also create your own custom task component to experiment with new datasets.
+- Follow the `foundation_x5_pretraining` taskcomponent in [main_Consolidated.py](Foundation_X+/main_Consolidated.py) to see how Foundation X+ is trained. You can also create your own custom task component to experiment with new datasets.
 
 **Flexible Dataset Picking:**
 - The updated code provides flexibility to select which datasets and tasks to use for pretraining Foundation X+.
