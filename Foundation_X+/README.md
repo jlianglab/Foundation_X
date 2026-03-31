@@ -1,4 +1,4 @@
-**Foundation X+**
+# Foundation X+
 
 ## Data Splits and Bounding Box Annotations
 - Data splits and generated COCO-format localization bouding box annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
