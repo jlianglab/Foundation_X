@@ -37,6 +37,7 @@ with torch.no_grad():
 ## Pretraining Foundation X+ Instructions
 **Script:**
 - Follow the script [`scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh`](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh) to start pretraining **Foundation X+ model**. <br/>
+
 **Flexible Dataset Picking:**
 - The updated code has the flexibility to choose the dataset and it's task on which the Foundation X to be pretrained on.
   
