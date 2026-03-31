@@ -58,7 +58,17 @@ This configuration trains on NIH ChestX-ray14 classification, Node21 classificat
 
 | Classification (CLS) | Localization (LOC) | Segmentation (SEG) |
 |---------------------|--------------------|--------------------|
-
+| chexpertCLS          | tbx11kLOC          | candidptxSEG   |
+| nihchestxray14CLS    | node21LOC          | chestxdetSEG   |
+| vindrcxrCLS          | candidptxLOC       | siimacrSEG     |
+| nihshenzenCLS        | rsnapneumoniaLOC   |                |
+| mimic2CLS            | chestxdetLOC       |                |
+| tbx11kCLS            | siimacrLOC         |                |
+| node21CLS            |                    |                |
+| candidptxCLS         |                    |                |
+| rsnapneumoniaCLS     |                    |                |
+| chestxdetCLS         |                    |                |
+| siimacrCLS           |                    |                |
 
 
 ## Acnkowledgement
