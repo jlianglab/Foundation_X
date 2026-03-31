@@ -57,7 +57,7 @@ cyclictask=chexpertCLS_nihchestxray14CLS_vindrcxrCLS_nihshenzenCLS_mimic2CLS_tbx
 ```
 cyclictask=nihchestxray14CLS_node21CLS_node21LOC_candidptxSEG
 ```
-This configuration trains on NIH ChestX-ray14 classification, Node21 classification, Node21 localization, and CANDID-PTX segmentation.
+  This configuration trains on NIH ChestX-ray14 classification, Node21 classification, Node21 localization, and CANDID-PTX segmentation.
 - Below is a list of available dataset–task combinations:  <br/>
 
 | Classification (CLS) | Localization (LOC) | Segmentation (SEG) |
