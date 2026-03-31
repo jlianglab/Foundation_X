@@ -4,7 +4,7 @@
 - Data splits and generated COCO-format localization bouding box annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
 
 ## Pre-trained models
-- You can download the pretrained models through this [Google Form](??).
+- You can download the pretrained models through this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScK8x0awPHDWGWnN-pU64nTBWaK0nTKHyl2OcxPGp4rOCsSHg/viewform?usp=publish-editor).
 
 ## Loading pre-trained Foundation X checkpoints and extracting features
 We provide a utility script `load_weights.py` to initialize a Swin-B backbone using our pretrained Foundation X checkpoints. The model only loads the encoder weights from the checkpoint, and supports an optional projection layer.
