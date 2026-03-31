@@ -4111,7 +4111,7 @@ def dataloader_return(args):
             train_loader_seg_ChestXDet, test_loader_seg_ChestXDet, train_loader_seg_SIIM, test_loader_seg_SIIM, train_loader_seg_CANDIDptx, test_loader_seg_CANDIDptx
     
 
-    if args.taskcomponent in ['foundation_x3_pretraining', 'foundation_x4_pretraining']:       
+    if args.taskcomponent in ['foundation_x3_pretraining', 'foundation_x4_pretraining', 'foundation_x5_pretraining']:       
         ## Dataloader for Classification -------------------------------------------------------------
         train_list = DATASETS_CONFIG["cls_nih_trainList"]
         val_list = DATASETS_CONFIG["cls_nih_valList"]
@@ -5035,7 +5035,7 @@ def dataloader_return(args):
 
 ############## ===========  Cls - Loc - Seg DataLoader ============ ################################## -- NAD's code for Dataloader
     ## SEGMENTATION DATASETS
-    if args.taskcomponent in ['foundation_x3_FineTuning', 'foundation_x4_pretraining'] and args.cyclictask == 'segFT_TESTseg_candidptxSEG':  
+    if args.taskcomponent in ['foundation_x3_FineTuning', 'foundation_x4_pretraining', 'foundation_x5_pretraining'] and args.cyclictask == 'segFT_TESTseg_candidptxSEG':  
         train_dataset = Candid_PTX_PXSDataset([("/scratch/jliang12/data/CANDID-PTX/dataset","data/candid_ptx/train.txt")], image_size=(args.imgsize,args.imgsize), mode="train")
         sampler = torch.utils.data.RandomSampler(train_dataset)
         train_loader_seg_CANDIDptx = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, num_workers=args.num_workers, pin_memory=True, sampler=sampler)
@@ -5047,7 +5047,7 @@ def dataloader_return(args):
         test_loader_seg_CANDIDptx = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size, num_workers=args.num_workers, pin_memory=True, drop_last=False)
         return train_loader_seg_CANDIDptx, test_loader_seg_CANDIDptx, 0
 
-    if args.taskcomponent in ['foundation_x3_FineTuning', 'foundation_x4_pretraining'] and args.cyclictask == 'segFT_TESTseg_chestxdetSEG':  
+    if args.taskcomponent in ['foundation_x3_FineTuning', 'foundation_x4_pretraining', 'foundation_x5_pretraining'] and args.cyclictask == 'segFT_TESTseg_chestxdetSEG':  
         train_dataset = chestxdet_dataset(image_path="/scratch/jliang12/data/ChestX-Det/train/", masks_path="/scratch/jliang12/data/ChestX-Det/train_binary_mask/", image_size=(args.imgsize,args.imgsize), mode='train') ## ChestXDetDataset chestxdet_dataset
         train_loader_seg_ChestXDet = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, num_workers=args.num_workers, pin_memory=True, shuffle=True, drop_last=True )
 
@@ -5055,7 +5055,7 @@ def dataloader_return(args):
         test_loader_seg_ChestXDet = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size, num_workers=args.num_workers, pin_memory=True, drop_last=False )
         return train_loader_seg_ChestXDet, test_loader_seg_ChestXDet, 0
 
-    if args.taskcomponent in ['foundation_x3_FineTuning', 'foundation_x4_pretraining'] and args.cyclictask == 'segFT_TESTseg_siimacrSEG':  
+    if args.taskcomponent in ['foundation_x3_FineTuning', 'foundation_x4_pretraining', 'foundation_x5_pretraining'] and args.cyclictask == 'segFT_TESTseg_siimacrSEG':  
         train_dataset = SIIM_PXSDataset([("/scratch/jliang12/data/siim_pneumothorax_segmentation/train_jpeg","data/pxs/train.txt")], image_size=(args.imgsize,args.imgsize), mode="train")
         sampler = torch.utils.data.RandomSampler(train_dataset)
         train_loader_seg_SIIM = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, num_workers=args.num_workers, pin_memory=True, sampler=sampler, drop_last=True)
