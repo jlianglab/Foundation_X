@@ -1,3 +1,6 @@
+![](Foundation_X+/Figures/FoundationX+_Logo.png)
+<!-- # Integrating Classification, Localization, and Segmentation through Lock-Release Pretraining Strategy for Chest X-ray Analysis -->
+
 # Foundation X+
 
 ## Data Splits and Bounding Box Annotations
