@@ -1,7 +1,7 @@
 ![](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/Figures/FoundationX%2B_Logo.png)
 <!-- # Integrating Classification, Localization, and Segmentation through Lock-Release Pretraining Strategy for Chest X-ray Analysis -->
 
-# Foundation X+
+Foundation X+ is an efficient end-to-end framework for multi-task medical imaging that integrates classification, localization, and segmentation using diverse expert-level annotations across datasets. It leverages Cyclic Training, Lock-Release Pretraining, and a Student-Teacher learning paradigm to ensure balanced learning, strong generalization, and reduced overfitting. Foundation X+ further introduces Region-Guided ROI Alignment for improved localization-aware feature learning, and adopts a single shared localization decoder with lightweight task-specific heads, significantly reducing model size while maintaining performance.
 
 ## Data Splits and Bounding Box Annotations
 - Data splits and generated COCO-format localization bouding box annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
