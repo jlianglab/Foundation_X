@@ -2,7 +2,8 @@
 
 ## Data Splits and Bounding Box Annotations
 - Data splits and generated COCO-format localization bouding box annotation files can be downloaded through this [Google Form](https://forms.gle/wdiq3s6SNvsd6nn78). <br/>
-
+- The [config.py](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/config/config_datasets.py) file defines the directory structure for all datasets and specifies the task head indices associated with each task.
+- 
 ## Pre-trained models
 - You can download the pretrained models through this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScK8x0awPHDWGWnN-pU64nTBWaK0nTKHyl2OcxPGp4rOCsSHg/viewform?usp=publish-editor).
 
@@ -36,15 +37,16 @@ with torch.no_grad():
 
 ## Pretraining Foundation X+ Instructions
 **Script:**
-- Follow the script [`scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh`](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh) to start pretraining **Foundation X+ model**. <br/>
-- The script will start the pretraining of Foundation X+ on all the 11 datasets and it's 20 tasks.
-- You will need to change the LOGFILE parameter which indicates where to store the pretrained models.
-- If you use --debug, you can try out the code and see if you face any errors or issues before running the full pretraining.
-- If you use --resume $RESUME, it will load the Foundation X+'s pretrained weights and resume pretraining from the indicated checkpoint.
-- The [config.py](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/config/config_datasets.py) file contains all the dataset's directories and includes the task head numbers assigned to each task.
+- Use the script [`scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh`](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/scripts/run_IntegratedModel_Foundation6_ClsLocSeg_v107.sh) to start pretraining **Foundation X+ model**. <br/>
+- This script launches pretraining across all 11 datasets and 20 tasks.
+- Update the LOGFILE parameter to specify where pretrained models will be saved.
+- Use the --debug flag to run a quick check and identify potential issues before full pretraining.
+- Use --resume $RESUME to load pretrained weights and continue training from a specified checkpoint.
 
 **Flexible Dataset Picking:**
 - The updated code has the flexibility to choose the dataset and it's task on which the Foundation X to be pretrained on.
+- To include all datasets and tasks, use the following parameter in the script:
+cyclictask=chexpertCLS_nihchestxray14CLS_vindrcxrCLS_nihshenzenCLS_mimic2CLS_tbx11kCLS_node21CLS_candidptxCLS_rsnapneumoniaCLS_chestxdetCLS_siimacrCLS_tbx11kLOC_node21LOC_candidptxLOC_rsnapneumoniaLOC_chestxdetLOC_siimacrLOC_candidptxSEG_chestxdetSEG_siimacrSEG
   
 
 ## Acnkowledgement
