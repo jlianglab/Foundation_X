@@ -41,6 +41,7 @@ with torch.no_grad():
 - You will need to change the LOGFILE parameter which indicates where to store the pretrained models.
 - If you use --debug, you can try out the code and see if you face any errors or issues before running the full pretraining.
 - If you use --resume $RESUME, it will load the Foundation X+'s pretrained weights and resume pretraining from the indicated checkpoint.
+- The [config.py](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/config/config_datasets.py) file contains all the dataset's directories and includes the task head numbers assigned to each task.
 
 **Flexible Dataset Picking:**
 - The updated code has the flexibility to choose the dataset and it's task on which the Foundation X to be pretrained on.
