@@ -44,17 +44,17 @@ with torch.no_grad():
 - Use --resume $RESUME to load pretrained weights and continue training from a specified checkpoint.
 
 **Flexible Dataset Picking:**
-- The updated code has the flexibility to choose the dataset and it's task on which the Foundation X to be pretrained on.
+- The updated code provides flexibility to select which datasets and tasks to use for pretraining Foundation X+.
 - To include all datasets and tasks, use the following parameter in the script:
 ```
 cyclictask=chexpertCLS_nihchestxray14CLS_vindrcxrCLS_nihshenzenCLS_mimic2CLS_tbx11kCLS_node21CLS_candidptxCLS_rsnapneumoniaCLS_chestxdetCLS_siimacrCLS_tbx11kLOC_node21LOC_candidptxLOC_rsnapneumoniaLOC_chestxdetLOC_siimacrLOC_candidptxSEG_chestxdetSEG_siimacrSEG
 ```
-- You can select any combination of datasets and tasks for pretraining by concatenating them with _.
+- You can select any combination of datasets and tasks by concatenating them with _. For example:
 ```
 cyclictask=nihchestxray14CLS_node21CLS_node21LOC_candidptxSEG
 ```
-This configuration trains on NIH ChestX-ray14 classification, Node21 classification, Node21 localization, and CANDID-PTX segmentation tasks.
-- Here's a list of parameter that you can try:  <br/>
+This configuration trains on NIH ChestX-ray14 classification, Node21 classification, Node21 localization, and CANDID-PTX segmentation.
+- Below is a list of available dataset–task combinations:  <br/>
 
 | Classification (CLS) | Localization (LOC) | Segmentation (SEG) |
 |---------------------|--------------------|--------------------|
