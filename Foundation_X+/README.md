@@ -55,19 +55,9 @@ cyclictask=nihchestxray14CLS_node21CLS_node21LOC_candidptxSEG
 ```
 This configuration trains on NIH ChestX-ray14 classification, Node21 classification, Node21 localization, and CANDID-PTX segmentation tasks.
 - Here's a list of parameter that you can try:  <br/>
-| Classification        | Localization       | Segmentation   | <br/>
-|----------------------|--------------------|----------------| <br/>
-| chexpertCLS          | tbx11kLOC          | candidptxSEG   | <br/>
-| nihchestxray14CLS    | node21LOC          | chestxdetSEG   | <br/>
-| vindrcxrCLS          | candidptxLOC       | siimacrSEG     | <br/>
-| nihshenzenCLS        | rsnapneumoniaLOC   |                | <br/>
-| mimic2CLS            | chestxdetLOC       |                | <br/>
-| tbx11kCLS            | siimacrLOC         |                | <br/>
-| node21CLS            |                    |                | <br/>
-| candidptxCLS         |                    |                | <br/>
-| rsnapneumoniaCLS     |                    |                | <br/>
-| chestxdetCLS         |                    |                | <br/>
-| siimacrCLS           |                    |                | <br/>
+| Classification        | Localization       | Segmentation   |
+|----------------------|--------------------|----------------|
+
 
 
 ## Acnkowledgement
