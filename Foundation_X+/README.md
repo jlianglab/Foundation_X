@@ -11,7 +11,7 @@ Foundation X+ is an efficient end-to-end framework for multi-task medical imagin
 - You can download the pretrained models through this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScK8x0awPHDWGWnN-pU64nTBWaK0nTKHyl2OcxPGp4rOCsSHg/viewform?usp=publish-editor).
 
 ## Loading pre-trained Foundation X+ checkpoints and extracting features
-We provide a utility script `load_weights.py` to initialize a Swin-B backbone using our pretrained Foundation X checkpoints. The model only loads the encoder weights from the checkpoint, and supports an optional projection layer.
+We provide a utility script `load_weights.py` to initialize a Swin-B backbone using our pretrained Foundation X+ checkpoints. The model only loads the encoder weights from the checkpoint, and supports an optional projection layer.
 
  #### Example: Load model and extract features
  ```python
