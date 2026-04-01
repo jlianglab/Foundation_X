@@ -57,7 +57,9 @@ cyclictask=chexpertCLS_nihchestxray14CLS_vindrcxrCLS_nihshenzenCLS_mimic2CLS_tbx
 ```
 ## This configuration trains on NIH ChestX-ray14 classification, Node21 classification, Node21 localization, and CANDID-PTX segmentation.
 cyclictask=nihchestxray14CLS_node21CLS_node21LOC_candidptxSEG
+
  - OR - 
+
 ## This configuration trains on NIH ChestX-ray14 classification, Node21 classification, Node21 localization, CANDID-PTX classification, CANDID-PTX localization and CANDID-PTX segmentation.
 cyclictask=nihchestxray14CLS_node21CLS_node21LOC_candidptxCLS_candidptxLOC_candidptxSEG
 ```
