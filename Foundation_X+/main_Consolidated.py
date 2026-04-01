@@ -10802,9 +10802,9 @@ def main(args):
                         print()
                         print("Segmentation_CANDIDPTX_A_Train")
                         task_todo = "Segmentation_CANDIDPTX_A_Train"
-                        model.task_DetHead = DATASETS_HEADS["CANDIDPTX_LEG"]
+                        model.task_DetHead = DATASETS_HEADS["CANDIDPTX_LOC"]
                         if args.modelEMA:
-                            model_ema.task_DetHead = DATASETS_HEADS["CANDIDPTX_LEG"]
+                            model_ema.task_DetHead = DATASETS_HEADS["CANDIDPTX_LOC"]
                         if args.opt == 'adamw_and_sgd':
                             optimizer = optimizer_sgd
                         model = Freeze_Backbone_SegmentationDecoder(model)
@@ -10818,9 +10818,9 @@ def main(args):
                     print()
                     print("Segmentation_CANDIDPTX_B_Train")
                     task_todo = "Segmentation_CANDIDPTX_B_Train"
-                    model.task_DetHead = DATASETS_HEADS["CANDIDPTX_LEG"]
+                    model.task_DetHead = DATASETS_HEADS["CANDIDPTX_LOC"]
                     if args.modelEMA:
-                        model_ema.task_DetHead = DATASETS_HEADS["CANDIDPTX_LEG"]
+                        model_ema.task_DetHead = DATASETS_HEADS["CANDIDPTX_LOC"]
                     if args.opt == 'adamw_and_sgd':
                         optimizer = optimizer_sgd
                     model = unFreeze_Backbone_SegmentationDecoder(model)
