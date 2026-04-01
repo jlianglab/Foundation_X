@@ -79,7 +79,7 @@ EMAMODE=True_Epoch
 
 cyclictask=chexpertCLS_nihchestxray14CLS_vindrcxrCLS_nihshenzenCLS_mimic2CLS_tbx11kCLS_node21CLS_candidptxCLS_rsnapneumoniaCLS_chestxdetCLS_siimacrCLS_tbx11kLOC_node21LOC_candidptxLOC_rsnapneumoniaLOC_chestxdetLOC_siimacrLOC_candidptxSEG_chestxdetSEG_siimacrSEG
 # cls_loc_seg | seg | loc | loc_seg | cls_loc | cls
-# --debugOnlyTest --saveAllModel --debug
+# --debugOnlyTest --saveAllModel --lockrelease --debug
 
 export MASTER_ADDR=127.0.0.1
 export MASTER_PORT=29501
@@ -92,7 +92,7 @@ export MASTER_PORT=29501
 	--output_dir $LOGFILE -c $CONFIGFILE --imgsize $IMGSIZE --backbonemodel $BACKBONEMODEL --init $INIT --total_epochs $total_epochs --batch_size $BATCHSIZE --opt $opt \
 	--finetune_ignore label_enc.weight class_embed \
 	--backbone_dir $backbone_dir --lr_backbone $lr_backbone --lr_locEnc $lr_locEnc --lr_locDec $lr_locDec  --lr_segmentor $lr_segmentor \
-	--cyclictask $cyclictask --serverC $SERVER --modelEMA $EMAMODE --saveAllModel \
+	--cyclictask $cyclictask --serverC $SERVER --modelEMA $EMAMODE --lockrelease --saveAllModel \
 	--options dn_scalar=100 embed_init_tgt=TRUE \
 	dn_label_coef=1.0 dn_bbox_coef=1.0 use_ema=False \
 	dn_box_noise_scale=1.0
