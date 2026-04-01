@@ -128,6 +128,7 @@ def get_args_parser():
     parser.add_argument('--train', action='store_true')
     parser.add_argument('--test', action='store_true') 
     parser.add_argument('--debug', action='store_true')
+    parser.add_argument('--lockrelease', action='store_true')
     parser.add_argument('--debugOnlyTest', action='store_true')
     parser.add_argument('--IgnoreTest', action='store_true')
     parser.add_argument('--saveAllModel', action='store_true')
@@ -10359,19 +10360,20 @@ def main(args):
             if args.debugOnlyTest == False:
                 ### ------ CheXpert ------ ###
                 if TaskHead_number == 0 and 'chexpertCLS' in args.cyclictask: # Train for CheXpert Classification ||    ##  model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    print()
-                    print("Classification_CheXpert_A_Train")
-                    task_todo = "Classification_CheXpert_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_CheXpert, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["CHEXPERT_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
-                    print( "Epoch {:04d}: Train Classification CheXpert Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification CheXpert Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'CheXpert', task_todo, str(train_lossAVG), '-', '-']
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_CheXpert_A_Train")
+                        task_todo = "Classification_CheXpert_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_CheXpert, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["CHEXPERT_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
+                        print( "Epoch {:04d}: Train Classification CheXpert Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification CheXpert Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'CheXpert', task_todo, str(train_lossAVG), '-', '-']
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
 
                     print()
@@ -10392,19 +10394,20 @@ def main(args):
 
                 ### ------ NIHChestXray14 ------ ###        
                 if TaskHead_number == 1 and 'nihchestxray14CLS' in args.cyclictask: # Train for NIH ChestX-ray14 Classification
-                    print()
-                    print("Classification_NIH_A_Train")
-                    task_todo = "Classification_NIH_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_NIHChestXray14, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["NIHCHESTXRAY14_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
-                    print( "Epoch {:04d}: Train Classification NIHChestXray14 Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification NIHChestXray14 Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'NIHChestXray14', task_todo, str(train_lossAVG), '-', '-']
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_NIH_A_Train")
+                        task_todo = "Classification_NIH_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_NIHChestXray14, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["NIHCHESTXRAY14_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
+                        print( "Epoch {:04d}: Train Classification NIHChestXray14 Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification NIHChestXray14 Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'NIHChestXray14', task_todo, str(train_lossAVG), '-', '-']
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_NIH_B_Train")
@@ -10424,19 +10427,20 @@ def main(args):
 
                 ### ------ VinDRCXR ------ ###        
                 if TaskHead_number == 2 and 'vindrcxrCLS' in args.cyclictask: # Train for VinDR-CXR Classification
-                    print()
-                    print("Classification_VinDRCXR_A_Train")
-                    task_todo = "Classification_VinDRCXR_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_VinDRCXR, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["VINDRCXR_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
-                    print( "Epoch {:04d}: Train Classification VinDRCXR Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification VinDRCXR Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'VinDRCXR', task_todo, str(train_lossAVG), '-', '-']
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_VinDRCXR_A_Train")
+                        task_todo = "Classification_VinDRCXR_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_VinDRCXR, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["VINDRCXR_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
+                        print( "Epoch {:04d}: Train Classification VinDRCXR Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification VinDRCXR Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'VinDRCXR', task_todo, str(train_lossAVG), '-', '-']
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_VinDRCXR_B_Train")
@@ -10456,19 +10460,20 @@ def main(args):
 
                 ### ------ NIHShenzhen ------ ###        
                 if TaskHead_number == 3 and 'nihshenzenCLS' in args.cyclictask: # Train for NIH Shenzhen CXR Classification
-                    print()
-                    print("Classification_NIHShenzhen_A_Train")
-                    task_todo = "Classification_NIHShenzhen_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_NIHShenzhen, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["NIHSHENZEN_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F') ## Binary but for the dataloader setup
-                    print( "Epoch {:04d}: Train Classification NIHShenzhen Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification NIHShenzhen Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'NIHShenzhen', task_todo, str(train_lossAVG), '-', '-']
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_NIHShenzhen_A_Train")
+                        task_todo = "Classification_NIHShenzhen_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_NIHShenzhen, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["NIHSHENZEN_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F') ## Binary but for the dataloader setup
+                        print( "Epoch {:04d}: Train Classification NIHShenzhen Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification NIHShenzhen Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'NIHShenzhen', task_todo, str(train_lossAVG), '-', '-']
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_NIHShenzhen_B_Train")
@@ -10488,19 +10493,20 @@ def main(args):
 
                 ### ------ MIMIC-II ------ ###        
                 if TaskHead_number == 4 and 'mimic2CLS' in args.cyclictask: # Train for MIMIC-II Classification
-                    print()
-                    print("Classification_MIMICII_A_Train")
-                    task_todo = "Classification_MIMICII_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_MIMICII, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["MIMIC2_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
-                    print( "Epoch {:04d}: Train Classification MIMICII Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification MIMICII Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'MIMICII', task_todo, str(train_lossAVG), '-', '-']
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_MIMICII_A_Train")
+                        task_todo = "Classification_MIMICII_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_MIMICII, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["MIMIC2_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
+                        print( "Epoch {:04d}: Train Classification MIMICII Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification MIMICII Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'MIMICII', task_todo, str(train_lossAVG), '-', '-']
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: 
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_MIMICII_B_Train")
@@ -10520,19 +10526,20 @@ def main(args):
 
                 ### ------ TBX11K ------ ###
                 if TaskHead_number == 5 and 'tbx11kCLS' in args.cyclictask: # Train for TBX11k Classification
-                    print()
-                    print("Classification_TBX11k_A_Train")
-                    task_todo = "Classification_TBX11k_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_TBX11k, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["TBX11K_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, train_type='F')
-                    print( "Epoch {:04d}: Train Classification TBX11k Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification TBX11k Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'TBX11k', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_TBX11k_A_Train")
+                        task_todo = "Classification_TBX11k_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_TBX11k, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["TBX11K_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, train_type='F')
+                        print( "Epoch {:04d}: Train Classification TBX11k Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification TBX11k Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'TBX11k', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_TBX11k_B_Train")
@@ -10551,7 +10558,7 @@ def main(args):
                     did_model_train = True
 
                 if TaskHead_number == 6 and 'tbx11kLOC' in args.cyclictask: # Train for TBX11k Localization
-                    if 'locFT' not in args.cyclictask:
+                    if args.lockrelease == True:
                         print()
                         print("Localization_TBX11k_A_Train") # Train A Set
                         task_todo = "Localization_TBX11k_A_Train"
@@ -10613,19 +10620,20 @@ def main(args):
 
                 ### ------ NODE21 ------ ###
                 if TaskHead_number == 7 and 'node21CLS' in args.cyclictask: # Train for NODE21 Classification 
-                    print()
-                    print("Classification_NODE21_A_Train")
-                    task_todo = "Classification_NODE21_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_NODE21, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["NODE21_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, train_type='F')
-                    print( "Epoch {:04d}: Train Classification NODE21 Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification NODE21 Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'NODE21', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_NODE21_A_Train")
+                        task_todo = "Classification_NODE21_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_NODE21, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["NODE21_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, train_type='F')
+                        print( "Epoch {:04d}: Train Classification NODE21 Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification NODE21 Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'NODE21', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_NODE21_B_Train")
@@ -10644,7 +10652,7 @@ def main(args):
                     did_model_train = True
 
                 if TaskHead_number == 8 and 'node21LOC' in args.cyclictask: # Train for NODE21 Localization
-                    if 'locFT' not in args.cyclictask:
+                    if args.lockrelease == True:
                         print()
                         print("Localization_NODE21_A_Train") # Train A Set
                         task_todo = "Localization_NODE21_A_Train"
@@ -10706,19 +10714,20 @@ def main(args):
 
                 ### ------ CANDID-PTX ------ ###
                 if TaskHead_number == 9 and 'candidptxCLS' in args.cyclictask: # Train for CANDID-PTX Classification
-                    print()
-                    print("Classification_CANDIDPTX_A_Train")
-                    task_todo = "Classification_CANDIDPTX_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_CANDIDptx, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["CANDIDPTX_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
-                    print( "Epoch {:04d}: Train Classification CANDIDPTX Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification CANDIDPTX Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'CANDID-PTX', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_CANDIDPTX_A_Train")
+                        task_todo = "Classification_CANDIDPTX_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_CANDIDptx, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["CANDIDPTX_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
+                        print( "Epoch {:04d}: Train Classification CANDIDPTX Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification CANDIDPTX Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'CANDID-PTX', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_CANDIDPTX_B_Train")
@@ -10737,7 +10746,7 @@ def main(args):
                     did_model_train = True
 
                 if TaskHead_number == 10 and 'candidptxLOC' in args.cyclictask: # Train for CANDID-PTX Localization
-                    if 'locFT' not in args.cyclictask:
+                    if args.lockrelease == True:
                         print()
                         print("Localization_CANDIDPTX_A_Train") # Train A Set
                         task_todo = "Localization_CANDIDPTX_A_Train"
@@ -10798,7 +10807,7 @@ def main(args):
                     did_model_train = True
 
                 if TaskHead_number == 11 and 'candidptxSEG' in args.cyclictask: # Train for CANDID-PTX Segmentation
-                    if 'segFT' not in args.cyclictask:
+                    if args.lockrelease == True:
                         print()
                         print("Segmentation_CANDIDPTX_A_Train")
                         task_todo = "Segmentation_CANDIDPTX_A_Train"
@@ -10834,19 +10843,20 @@ def main(args):
                
                 ### ------ RSNA Pneumonia ------ ###
                 if TaskHead_number == 12 and 'rsnapneumoniaCLS' in args.cyclictask: # Train for RSNA Pneumonia Classification
-                    print()
-                    print("Classification_RSNAPneumonia_A_Train")
-                    task_todo = "Classification_RSNAPneumonia_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_RSNApneumonia, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["RNSNAPNEUMONIA_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
-                    print( "Epoch {:04d}: Train Classification RSNAPneumonia Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification RSNAPneumonia Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'RSNAPneumonia', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_RSNAPneumonia_A_Train")
+                        task_todo = "Classification_RSNAPneumonia_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_RSNApneumonia, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["RNSNAPNEUMONIA_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
+                        print( "Epoch {:04d}: Train Classification RSNAPneumonia Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification RSNAPneumonia Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'RSNAPneumonia', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_RSNAPneumonia_B_Train")
@@ -10865,7 +10875,7 @@ def main(args):
                     did_model_train = True
 
                 if TaskHead_number == 13 and 'rsnapneumoniaLOC' in args.cyclictask:  # Train for RSNA Pneumonia Localization
-                    if 'locFT' not in args.cyclictask:
+                    if args.lockrelease == True:
                         print()
                         print("Localization_RSNAPneumonia_A_Train") # Train A Set
                         task_todo = "Localization_RSNAPneumonia_A_Train"
@@ -10928,19 +10938,20 @@ def main(args):
 
                 ### ------ ChestX-Det ------ ###
                 if TaskHead_number == 14 and 'chestxdetCLS' in args.cyclictask: # Train for ChestX-Det Classification
-                    print()
-                    print("Classification_ChestXDet_A_Train")
-                    task_todo = "Classification_ChestXDet_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_ChestXDet, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["CHESTXDET_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
-                    print( "Epoch {:04d}: Train Classification ChestXDet Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification ChestXDet Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'ChestX-Det', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_ChestXDet_A_Train")
+                        task_todo = "Classification_ChestXDet_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_ChestXDet, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["CHESTXDET_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
+                        print( "Epoch {:04d}: Train Classification ChestXDet Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification ChestXDet Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'ChestX-Det', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_ChestXDet_B_Train")
@@ -10959,7 +10970,7 @@ def main(args):
                     did_model_train = True
 
                 if TaskHead_number == 15 and 'chestxdetLOC' in args.cyclictask:  # Train for ChestX-Det Localization
-                    if 'locFT' not in args.cyclictask:
+                    if args.lockrelease == True:
                         print()
                         print("Localization_ChestXDet_A_Train") # Train A Set
                         task_todo = "Localization_ChestXDet_A_Train"
@@ -11020,7 +11031,7 @@ def main(args):
                     did_model_train = True
 
                 if TaskHead_number == 16 and 'chestxdetSEG' in args.cyclictask: # Train for ChestX-Det Segmentation
-                    if 'segFT' not in args.cyclictask:
+                    if args.lockrelease == True:
                         print()
                         print("Segmentation_ChestXDet_A_Train")
                         task_todo = "Segmentation_ChestXDet_A_Train"
@@ -11056,19 +11067,20 @@ def main(args):
 
                 ### ------ SIIM_ACR_Pneumothorax ------ ###
                 if TaskHead_number == 17 and 'siimacrCLS' in args.cyclictask: # Train for SIIM_ACR_Pneumothorax Classification
-                    print()
-                    print("Classification_SIIMACR_A_Train")
-                    task_todo = "Classification_SIIMACR_A_Train"
-                    if args.opt == 'adamw_and_sgd':
-                        optimizer = optimizer_sgd
-                    model = Freeze_Backbone_unFreezeClassifierHeads(model)
-                    train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_SIIMACRptx, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["SIIMACR_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
-                    print( "Epoch {:04d}: Train Classification SIIMACR Loss {:.5f} ".format(epoch, train_lossAVG) )
-                    print( "Epoch {:04d}: Train Classification SIIMACR Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
-                    fields=[epoch, 'SIIM-ACR', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
-                    with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
-                        writer = csv.writer(f)
-                        writer.writerow(fields)
+                    if args.lockrelease == True:
+                        print()
+                        print("Classification_SIIMACR_A_Train")
+                        task_todo = "Classification_SIIMACR_A_Train"
+                        if args.opt == 'adamw_and_sgd':
+                            optimizer = optimizer_sgd
+                        model = Freeze_Backbone_unFreezeClassifierHeads(model)
+                        train_lossAVG, model_ema = train_CLASSIFICATION(train_loader_cls_SIIMACRptx, model, criterion_CLS, optimizer, epoch, args, log_writter_DETECTION, head_number=DATASETS_HEADS["SIIMACR_CLS"], model_ema=model_ema, momen=momentum_schedule, coff=coff, criterionMSE=criterionMSE, task_cls_type='nonBinary', train_type='F')
+                        print( "Epoch {:04d}: Train Classification SIIMACR Loss {:.5f} ".format(epoch, train_lossAVG) )
+                        print( "Epoch {:04d}: Train Classification SIIMACR Loss {:.5f} ".format(epoch, train_lossAVG), file=log_writter_DETECTION )
+                        fields=[epoch, 'SIIM-ACR', task_todo, str(train_lossAVG), '-', '-'] # AUC_SliceLevel_Res
+                        with open(args.output_dir+'/export_csvFile_TRAIN.csv', 'a') as f: # export_csvFile_train = pd.DataFrame(columns=['Epoch', 'Dataset', 'Task-Train', 'Cls_Loss', 'Loc_Loss','Seg_Loss'])
+                            writer = csv.writer(f)
+                            writer.writerow(fields)
 
                     print()
                     print("Classification_SIIMACR_B_Train")
@@ -11087,7 +11099,7 @@ def main(args):
                     did_model_train = True
 
                 if TaskHead_number == 18 and 'siimacrLOC' in args.cyclictask:  # Train for SIIM_ACR_Pneumothorax Localization
-                    if 'locFT' not in args.cyclictask:
+                    if args.lockrelease == True:
                         print()
                         print("Localization_SIIMACR_A_Train") # Train A Set
                         task_todo = "Localization_SIIMACR_A_Train"
@@ -11148,7 +11160,7 @@ def main(args):
                     did_model_train = True
 
                 if TaskHead_number == 19 and 'siimacrSEG' in args.cyclictask: # Train for SIIMACR Segmentation
-                    if 'segFT' not in args.cyclictask:
+                    if args.lockrelease == True:
                         print()
                         print("Segmentation_SIIMACR_A_Train")
                         task_todo = "Segmentation_SIIMACR_A_Train"
