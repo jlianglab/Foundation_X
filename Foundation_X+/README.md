@@ -92,3 +92,6 @@ This research was partially supported by ASU and Mayo Clinic through a Seed Gran
 ## Contact
 For any questions, feel free to reach out: <br/>
 Email: nuislam (at) asu.edu
+
+## License
+Released under the [ASU GitHub Project License](https://github.com/jlianglab/Foundation_X/blob/main/Foundation_X%2B/LICENSE).
