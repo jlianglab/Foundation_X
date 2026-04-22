@@ -1,19 +1,26 @@
 #!/bin/bash
-#SBATCH --job-name=FoundationX_run104_RCons_1LocDec
+#SBATCH --job-name=SLURM_SwinB_IntegratedModel_SwinL768
 
 #SBATCH -N 1
-#SBATCH -G a100:1
-#SBATCH -c 12
-##SBATCH --exclusive
-#SBATCH --mem=80G
-#SBATCH -p general
+#SBATCH -G 1
+#SBATCH -c 72
+#SBATCH --exclusive
+#SBATCH --mem=500G
+#SBATCH -p arm ## highmem
 #SBATCH -t 7-00:00:00
 #SBATCH -q public
+##SBATCH -L gracehopper
 
 #SBATCH -o %x_slurm_%j.out     
 #SBATCH -e %xslurm_%j.err      
 #SBATCH --mail-type=ALL 
 #SBATCH --mail-user=nuislam@asu.edu
+
+
+# # A100 SOL
+# module load mamba/latest
+# module load cuda-11.6.2-gcc-12.1.0
+# source activate tf-tnt-gpu2
 
 # # A100 SOL
 # module load mamba/latest
