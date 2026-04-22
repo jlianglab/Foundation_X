@@ -16,14 +16,14 @@
 #SBATCH --mail-user=nuislam@asu.edu
 
 # # A100 SOL
-module load mamba/latest
-module load cuda-11.6.2-gcc-12.1.0
-source activate tf-tnt-gpu2
+# module load mamba/latest
+# module load cuda-11.6.2-gcc-12.1.0
+# source activate tf-tnt-gpu2
 
 # # Grace Hopper SOL
-# module load mamba/latest
-# module load cuda-12.4.1-gcc-11.4.1
-# mamba activate gh_gpu1
+module load mamba/latest
+module load cuda-12.4.1-gcc-11.4.1
+mamba activate gh_gpu1
 
 
 # # Swin-L + DINO
