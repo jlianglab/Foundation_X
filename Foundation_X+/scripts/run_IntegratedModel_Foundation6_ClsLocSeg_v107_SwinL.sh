@@ -29,7 +29,7 @@ source activate tf-tnt-gpu2
 # # Swin-L + DINO
 # CONFIGFILE=config/DINO/DINO_4scale_swinBASE.py
 CONFIGFILE=config/DINO/DINO_4scale_swinLARGE384.py
-LOGFILE=/scratch/nuislam/Model_Checkpoints/IntegratedModel_DINOpipeline/IntegratedModel_FoundationX3/run104_Ark6F6_ClsLocSeg_b24_AdamW_LockReleaseAll_RCons_1LocDec_TESTrun
+LOGFILE=/scratch/nuislam/Model_Checkpoints/IntegratedModel_DINOpipeline/IntegratedModel_FoundationX3/run101_ClsLocSeg_SwinL768
 # backbone_dir=/data/jliang12/dongaoma/Ark_models/TSconsist_NoOD_MIMIC_CheXpert_ChestXray14_RSNAPneumonia_VinDrCXR_Shenzhen_ep200.pth.tar ## Swin-B
 backbone_dir=/data/jliang12/shared/pretrained_models/Ark_models/Ark6_swinLarge768_ep50.pth.tar ## Swin-L
 
